@@ -1,0 +1,20 @@
+:root {
+  --separator-color: var(--alt-darkest);
+}
+.pausedOverlay {
+  display: block;
+  position: absolute;
+  left: -0.1rem;
+  top: -0.1rem;
+  right: -0.1rem;
+  bottom: -0.1rem;
+  opacity: 0.6;
+  background-color: var(--body-background);
+  z-index: 1000;
+  overflow: hidden;
+}
+.svgDefs   {
+  position: absolute;
+  height: 0;
+  width: 0;
+}

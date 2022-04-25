@@ -1,0 +1,79 @@
+@media only screen and (max-width: 767px) {
+    /* SMARTPHONES PORTRAIT AND LANDSCAPE */
+    body, button, table {
+        font-size: 10pt;
+    }
+    body {
+        line-height: 1.2;
+    }
+    header {
+        grid-template-areas: "title menu" "stats stats" "nav nav";
+        grid-template-columns: auto max-content;
+        padding: 0;
+        margin: 0 0.5rem;
+    }
+    main {
+        grid-template-areas: "title" "left" "right";
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+    }
+    .titleArea {
+        margin-left: 0;
+    }
+    h2 {
+        margin-top: 1rem;
+    }
+    .panelHeader {
+        padding: 0 0.4rem;
+        font-size: 1rem;
+    }
+    .dialog {
+        width: inherit;
+    }
+    .dialogHeader {
+        font-size: 1rem;
+    }
+    .theEndLetters {
+        font-size: 3rem;
+    }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    /* TABLETS PORTRAIT */
+    header {
+        grid-template-areas: "title stats menu" "nav nav nav";
+        grid-template-columns: auto max-content max-content;
+        padding: 0.2rem 0 0.5rem 0;
+    }
+    main {
+        grid-template-areas: "title title" "left right";
+        grid-template-columns: 50% auto;
+    }
+    .dialogHeader {
+        font-size: 1.2rem;
+    }
+}
+
+@media only screen and (max-width: 991px) {
+    /* SMARTPHONES AND TABLETS PORTRAIT */
+    .menuArea {
+        margin-top: 0.1rem;
+    }
+    .stores {
+        border-spacing: 0;
+    }
+    .tabWrapper {
+        grid-template-columns: 1fr;
+    }
+    .logArea li:nth-child(n+4) {
+        display: none;
+    }
+}
+
+@media only screen and (min-width: 992px) {
+    /* TABLET LANDSCAPE / DESKTOP */
+    header,
+    .tabWrapper {
+        max-width: 1440px;
+    }
+}

@@ -1,0 +1,96 @@
+:root {
+  --boosted-color: var(--color-mid);
+  --boosted-alt-color: var(--color-light);
+}
+.boosted, .lowPower, .powerOffline {
+  color: var(--boosted-color);
+  font-weight: 700;
+  font-size: 1rem;
+}
+.boosted path {
+  fill-opacity: 0;
+  stroke-width: 2;
+  stroke: var(--boosted-color);
+}
+.powerIconContainer {
+  fill: var(--boosted-color);
+  height: 1.4rem;
+  display: inline-block;
+  vertical-align: middle;
+}
+.lowPower > .powerIconContainer,
+.powerOffline > .powerIconContainer {
+  animation: powerIconAnim 2s infinite steps(1);
+}
+@keyframes powerIconAnim {
+  50% {
+    fill: var(--boosted-alt-color);
+  }
+}
+.gamePaused .powerIconContainer {
+  animation-play-state: paused;
+}
+.powerSupply {
+  margin: 1rem 0 0.2rem 0;
+  border-top: 0.1rem solid var(--mono-mid);
+  padding-top: 0.5rem;
+}
+.powerCells {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  align-items: center;
+}
+.powerCell {
+  padding: 0.1rem 0.3rem;
+  text-transform: uppercase;
+  color: var(--white);
+  text-align: center;
+}
+.powerCell+.powerCell {
+  margin: 0;
+}
+.powerCellGrid {
+  background-color: var(--mono-darkest);
+}
+.powerCellSolar {
+  background-color: var(--color-dark);
+}
+.powerCellWind {
+  background-color: var(--color-mid);
+}
+.powerTypeBasedLayout {
+  border-collapse: separate;
+  border-spacing: 0.5rem;
+}
+.powerTypeBasedLayout td:nth-child(1) {
+  width: 1%;
+  padding: 0 0.5rem;
+}
+.powerTypeBasedLayout td:nth-child(2) {
+  width: 1%;
+  padding: 0 1rem 0 0;
+  white-space: nowrap;
+}
+.powerVoid {
+  text-transform: uppercase;
+  font-size: 3rem;
+  text-align: center;
+  vertical-align: middle;
+  letter-spacing: 1.05rem;
+  animation: powerVoidAnim 3s infinite ease;
+}
+@keyframes powerVoidAnim {
+  0% {
+    opacity: 0.5;
+  }
+  20%,80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.5;
+  }
+}
+.gamePaused .powerVoid {
+  animation-play-state: paused;
+}

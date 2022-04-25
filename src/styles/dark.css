@@ -1,0 +1,41 @@
+html[data-theme="dark"] {
+    --body-text: var(--white);
+    --body-background: var(--black-darkmode);
+    --separator-color: var(--color-darkest);
+    --log-item-mesh: var(--mono-darkest);
+    --dialogOuterBackground: var(--black-darkmode);
+}
+html[data-theme="dark"] .titlesLogo {
+    filter: invert(100%);
+}
+html[data-theme="dark"] .titlesButton:hover {
+    background-color: transparent;
+    border-color: var(--mono-light);
+}
+html[data-theme="dark"] .panel {
+    --panel-text: var(--black);
+    box-shadow: none;
+    border: 0.1rem solid var(--mono-light);
+    border-radius: 0.1rem 0.1rem 0 0;
+}
+html[data-theme="dark"] .playStateButton {
+    filter: invert(100%);
+}
+html[data-theme="dark"] .playStateButton:hover:not([disabled]) {
+    background-color: var(--mono-darkest);
+}
+html[data-theme="dark"] .menuButton:hover:not([disabled]) {
+    background-color: var(--mono-mid);
+}
+html[data-theme="dark"] .navButton {
+    color: var(--mono-light)
+}
+html[data-theme="dark"] .createHandmade .actionButton:disabled {
+    color: var(--white);
+}
+html[data-theme="dark"] .exitButton:hover {
+    background-color: var(--color-darkest);
+  }
+html[data-theme="dark"] h2 {
+    color: var(--mono-lightest);
+}

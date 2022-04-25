@@ -1,0 +1,78 @@
+.trendsLayout {
+  display: grid;
+  grid-template-columns: 25% 45% auto;
+  grid-template-rows: 1fr;
+  column-gap: 1rem;
+  row-gap: 1rem;
+  align-items: center;
+  margin: 0rem 0 1rem 0;
+}
+.trendsIndicatorWrap {
+  grid-column: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.trendsProgress {
+  grid-column: 3;
+  display: flex;
+  align-items: center;
+  justify-content: right;
+  font-size: 1.6em;
+  padding-right: 1rem;
+}
+.trendsIndicatorOuter {
+  width: 3rem;
+  height: 3rem;
+  background-color: var(--color-light);
+  border: 0.1rem solid var(--color-darkest);
+  border-radius: 0.2rem;
+  position: relative;
+}
+.trendsIndicatorInner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  font-size: 2em;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  fill: var(--black);
+  stroke: var(--black);
+}
+.trendsIndicatorSelecting {
+  opacity: 1;
+  animation: trendsIndicatorSelecting-anim 3s infinite steps(2, start);
+  filter: blur(1px);
+}
+.trendsIndicatorSelecting:nth-child(1) {
+  animation-delay: 0s;
+}
+.trendsIndicatorSelecting:nth-child(2) {
+  animation-delay: -1s;
+}
+.trendsIndicatorSelecting:nth-child(3) {
+  animation-delay: -2s;
+}
+@keyframes trendsIndicatorSelecting-anim {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+.gamePaused .trendsIndicatorSelecting {
+  animation-play-state: paused;
+}
+.trendChoiceButton {
+  padding: 0;
+  height: 2.5rem;
+  width: 2.5rem;
+}
+.trendChoiceButton>img {
+  vertical-align: middle;
+}

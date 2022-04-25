@@ -1,0 +1,119 @@
+<html>
+  <script type="module">
+    import { h, text, app } from "https://unpkg.com/hyperapp"
+
+    const baseOffset = 1000000
+    let randOffset = 0
+    const generateSeed = () => {
+      randOffset = Math.random() * baseOffset
+      return randOffset
+    }
+    const random = () => {
+      randOffset += 1
+      return ((Math.sin(randOffset + baseOffset) + 1) * 5 * randOffset) % 1
+    }
+
+    const inverseNormalize = (val, min, max) => (val - max) / (min - max)
+    const sum = (a, b) => a + b
+    const normalize = (val, max, min) => (val - min) / (max - min)
+    const calcThresholds = (weights) => {
+      const totalWeight = baseWeights.reduce(sum, 0)
+      return weights.map((w) => inverseNormalize(w, 0, totalWeight))
+    }
+    const intInclusive = (val, min, max) => {
+      return Math.floor(val * (max - min + 1) + min)
+    }
+
+    const baseWeights = [1, 2, 3, 10]
+
+    const additionalOrders = (weights, startIndex, required) => {
+      const thresholds = calcThresholds(baseWeights)
+      const distributions = new Array(weights.length).fill(0)
+      let remaining = required
+      let counter = weights.length
+      let index = startIndex
+
+      while (counter > 0) {
+        counter -= 1
+        index = (index + 1) % weights.length
+        let allocated
+
+        if (counter === 0) {
+          distributions[index] = remaining
+          break
+        }
+
+        const rand = random()
+        if (rand < thresholds[index]) { continue }
+        const norm2 = normalize(rand, thresholds[index], 1)
+        allocated = intInclusive(norm2, 1, remaining)
+        remaining -= allocated
+        distributions[index] = allocated
+        if (remaining === 0) { break }
+      }
+      return [distributions, startIndex + 1 % baseWeights.length]
+    }
+  
+    const Start = (state) => ({
+      ...state,
+      started: true,
+    })
+
+    const genJitterList = () => {
+      const list = []
+      for (let i = 0; i < 100; i++) {
+        list.push(Math.floor((Math.random() * (1.2 - 0.7) + 0.7) * 10) / 10)
+      }
+      console.log(list)
+      return list
+    }
+
+    let jitterList
+    let jitterIndex = -1
+
+    const jitter = (demand) => {
+      if (jitterIndex === -1) {
+        jitterList = genJitterList()
+        jitterIndex = 0
+      } else {
+        jitterIndex = (jitterIndex + 1) % jitterList.length
+      }
+      return Math.round(demand * jitterList[jitterIndex])
+    }
+
+    const UpdateDemand = (state) => {
+      const jitteredDemand = jitter(10)
+      const [newOrders, startIndex]  = additionalOrders(baseWeights, state.startIndex, jitteredDemand)
+
+      return {
+        ...state,
+        orders: state.orders.map((v, i) => v + newOrders[i]),
+        startIndex,
+      }
+    }
+
+    const repeat = (dispatch, { action, delay }) => {
+      const id = setInterval(() => dispatch(action), delay)
+      return () => clearInterval(id)
+    }
+    const repeatTimer = (action, delay) => [repeat, { action, delay }]
+
+    app({
+      init: { orders: new Array(baseWeights.length).fill(0), rate: 1, startIndex: 0, started: false },
+      view: ({ orders, value }) =>
+        h("main", {}, [
+          h("ul", {},
+          orders.map((order) => h("li", {}, text(order)))
+          ),
+          h("button", { onclick: Start }, text("Start")),
+        ]),
+      node: document.getElementById("app"),
+      subscriptions: (state) => [
+        state.started && repeatTimer(UpdateDemand, 100),
+      ],
+    })
+    generateSeed()
+  </script>
+  
+  <main id="app"></main>
+</html>

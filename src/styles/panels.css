@@ -1,0 +1,34 @@
+.panel {
+  --panel-outline: var(--alt-darkest);
+  --panel-header-text: var(--white);
+  --panel-body-background: var(--alt-lightest);
+  --panel-text: var(--black);
+  display: flex;
+  flex-direction: column;
+  border: 0.2rem solid var(--panel-outline);
+  margin-bottom: 0.5rem;
+  background-color: var(--panel-outline);
+  border-radius: 0.3rem 0.3rem 0.1rem 0.1rem;
+  box-shadow: 0.2rem 0.2rem 0.2rem 0.05rem #ccc;
+}
+
+.panelHeader {
+  border-bottom: 0.2rem solid var(--panel-outline);
+  color: var(--panel-header-text);
+  padding: 0.2rem 0.2rem 0.2rem 0.4rem;
+  font-size: 1.2rem;
+  font-weight: 400;
+  text-transform: lowercase;
+}
+
+.panelBody {
+  padding: 0.4rem;
+  background-color: var(--panel-body-background);
+  min-height: 2rem;
+  color: var(--panel-text);
+}
+
+.panelBody>div {
+  margin-bottom: 0.5rem;
+  min-height: 1.7rem;
+}

@@ -1,0 +1,59 @@
+.orders {
+    text-align: right;
+    width: 95%;
+}
+
+.orders th:nth-child(1),
+.orders td:nth-child(1) {
+    text-align: left;
+}
+.orders th:nth-child(2),
+.orders td:nth-child(2),
+.orders th:nth-child(3),
+.orders td:nth-child(3) {
+    width: 25%;
+}
+.orders th:nth-child(4),
+.orders td:nth-child(4) {
+    width: 20%;
+}
+.ordersAltViewContainer {
+    margin: 0 0.2rem;
+    border-top: 0.1rem solid var(--alt-darkest);
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+.ordersAltViewContainer>legend {
+    padding: 0.4rem;
+    margin-left: 0.4rem;
+}
+.ordersAltView {
+    margin: 0.2rem 1rem;
+    border-collapse: separate;
+    width: auto;
+}
+.ordersAltView th:nth-child(1),
+.ordersAltView td:nth-child(1) {
+    text-align: left;
+}
+.ordersAltView th:nth-child(2),
+.ordersAltView td:nth-child(2) {
+    text-align: right;
+}
+.ordersViewSwitchContainer {
+    margin: 0.4rem;
+    vertical-align: middle;
+    text-align: right;
+}
+.ordersViewSwitch {
+    height: 2rem;
+    fill: var(--color-dark);
+    background-color: transparent;
+    border: 0.1rem solid var(--mono-dark);
+    border-radius: 0.3rem;
+    padding: 0.2rem;
+}
+.ordersViewSwitch:hover {
+    background-color: var(--alt-light);
+}

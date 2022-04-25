@@ -1,0 +1,32 @@
+{
+    "name": "wigmaker",
+    "short_name": "wigmaker",
+    "icons": [
+        {
+            "src": "./assets/android-chrome-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "./assets/android-chrome-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        },
+        {
+            "src": "./assets/maskable_icon_x192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "maskable"
+        },
+        {
+            "src": "./assets/maskable_icon_x512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "maskable"
+        }
+    ],
+    "theme_color": "#fefefe",
+    "background_color": "#fefefe",
+    "start_url": "https://redgem.games/wigmaker/index.html",
+    "display": "standalone"
+}

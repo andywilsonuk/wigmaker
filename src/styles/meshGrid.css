@@ -1,0 +1,36 @@
+:root {
+  --meshGridBackground: var(--black);
+}
+
+.meshGrid {
+  background-color: var(--meshGridBackground);
+}
+.meshGridNode {
+  transform-box: fill-box;
+  transform-origin: center;
+  transform: rotate(45deg);
+  fill: url(#meshNodeGradient);
+}
+.meshGridNodeOn {
+  stroke: var(--color-lightest);
+  stroke-width: 0.8%;
+  fill: url(#meshNodeGradientOn);
+}
+.meshGridConnection {
+  fill: var(--mono-darkest);
+}
+.meshGridConnectionOn {
+  fill: var(--color-mid);
+}
+.meshNodeGradientStop1 {
+  stop-color: var(--mono-darkest);
+}
+.meshNodeGradientStop2 {
+  stop-color: transparent;
+}
+.meshNodeGradientOnStop1 {
+  stop-color: white;
+}
+.meshNodeGradientOnStop2 {
+  stop-color: transparent;
+}

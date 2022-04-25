@@ -1,0 +1,37 @@
+:root {
+    --log-item-general: var(--mono-mid);
+    --log-item-incident: var(--color-light);
+    --log-item-news: var(--color-dark);
+    --log-item-mesh: var(--black);
+    --log-detailed-border: var(--color-light);
+}
+.logItem {
+    border-left: 0.4rem solid;
+    margin-bottom: 0.5rem;
+    padding-left: 0.4rem;
+}
+.logItemGeneral {
+    border-left-color: var(--log-item-general);
+}
+.logItemIncident {
+    border-left-color: var(--log-item-incident);
+}
+.logItemNews {
+    border-left-color: var(--log-item-news);
+}
+.logItemMesh {
+    border-left-color: var(--log-item-mesh);
+}
+.logDetailed {
+    border: 0.2rem dashed var(--log-detailed-border);
+    padding: 1rem;
+    margin-bottom: 2rem;
+}
+.logDetailedTitle {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin: 0 0 0.5rem 0;
+}
+.logDetailedP {
+    margin-bottom: 1rem;
+}

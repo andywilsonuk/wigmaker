@@ -1,0 +1,20 @@
+.createHandmade {
+    margin-bottom: 1rem;
+    
+}
+.stores {
+    width: 100%;
+}
+.stores td:nth-child(1) {
+    width: 30%;
+    white-space: nowrap;
+}
+.stores td:nth-child(2) {
+    text-align: right;
+    padding-right: 1rem;
+    width: 20%;
+    white-space: nowrap;
+}
+.stores td:nth-child(3) {
+    width: auto;
+}

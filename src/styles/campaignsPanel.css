@@ -1,0 +1,86 @@
+:root {
+    --campaign-progress-bar-border: var(--mono-darkest);
+    --campaign-progress-bar-filled: var(--campaign-progress-bar-border);
+    --campaign-progress-bar-filled-extra1: var(--color-darkest);
+    --campaign-progress-bar-filled-extra2: var(--color-dark);
+    --campaign-progress-bar-filled-extra3: var(--color-mid);
+    --campaign-progress-bar-filled-extra4: var(--color-light);
+    --campaign-progress-bar-filled-extra5: var(--color-lightest);
+}
+
+.campaignsList {
+    margin-top: 0.5rem;
+}
+
+.campaignsList>li {
+    padding: 0.2rem 0.2rem 0.5rem 0.2rem;
+    display: grid;
+    grid-template-columns: 4rem auto;
+}
+
+.campaignsBet {
+    grid-column: 1;
+    grid-row: 1 / span 4;
+}
+.campaignsProgress {
+    grid-column: 2;
+}
+.campaignsBrand {
+    grid-column: 2;
+    display: flex;
+    gap: 0.5rem;
+}
+.campaignsRealize {
+    margin-left: auto
+}
+
+.campaignProgressBar {
+    display: grid;
+    grid-template-columns: repeat(15, 1fr);
+    column-gap: 0.2rem;
+    margin: 0.5rem 0;
+}
+
+.campaignProgressBarIncrement {
+    border: 0.1rem solid var(--campaign-progress-bar-border);
+    height: 1rem;
+    width: 0.7rem;
+}
+.campaignProgressBarIncrement:nth-child(n+11) {
+    visibility: hidden;
+}
+.campaignProgressBarFilled:nth-child(n) {
+    visibility: visible;
+}
+.campaignProgressBarFilled {
+    background-color: var(--campaign-progress-bar-filled);
+}
+
+.campaignProgressBarFilled:nth-child(11) {
+    background-color: var(--campaign-progress-bar-filled-extra1);
+}
+
+.campaignProgressBarFilled:nth-child(12) {
+    background-color: var(--campaign-progress-bar-filled-extra2);
+    border-color: var(--campaign-progress-bar-filled-extra1);
+}
+
+.campaignProgressBarFilled:nth-child(13) {
+    background-color: var(--campaign-progress-bar-filled-extra3);
+    border-color: var(--campaign-progress-bar-filled-extra2);
+}
+
+.campaignProgressBarFilled:nth-child(14) {
+    background-color: var(--campaign-progress-bar-filled-extra4);
+    border-color: var(--campaign-progress-bar-filled-extra3);
+}
+
+.campaignProgressBarFilled:nth-child(15),
+.campaignProgressBarFilledCurrent:nth-child(n) {
+    background-color: var(--campaign-progress-bar-filled-extra5);
+    border-color: var(--campaign-progress-bar-filled-extra3);
+}
+.campaignUpliftPercent {
+    color: var(--color-light);
+    font-weight: 700;
+}

@@ -1,0 +1,80 @@
+:root {
+    --body-text: var(--black);
+    --body-background: var(--white);
+}
+body {
+    color: var(--body-text);
+    background-color: var(--body-background);
+    font-weight: 400;
+    font-size: 12pt;
+    line-height: 1.5;
+}
+button {
+    padding: 0 0.5rem;
+    min-width: 1.8rem;
+    white-space: nowrap;
+}
+button:active:not([disabled]) {
+    position: relative;
+    top: 0.1em;
+}
+button:focus {
+    outline-color: var(--black);
+}
+ol,
+ul {
+    margin-bottom: 0.5rem;
+}
+hr {
+    height: 1px;
+    border: none;
+    border-top: 1px solid var(--separator-color);
+    margin: 0.5rem 0;
+    min-height: 0.2rem;
+}
+table {
+    width: 100%;
+}
+th {
+    white-space: nowrap;
+}
+td {
+    padding-bottom: 0.2rem;
+    padding-top: 0.2rem;
+}
+input, select {
+    border: 0.1rem solid var(--mono-dark);
+}
+main {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-areas: "title title" "left right";
+    column-gap: 1rem;
+}
+span+span {
+    margin-left: 0.5rem;
+}
+.leftArea {
+    grid-area: left;
+    position: relative;
+}
+.rightArea {
+    grid-area: right;
+    position: relative;
+}
+.tabWrapper {
+    display: grid;
+    grid-template-columns: auto 70%;
+    margin: 0.5rem;
+    column-gap: 1rem;
+}
+.logArea {
+    grid-row-start: 1;
+    grid-row-end: span 10;
+}
+h2 {
+    font-size: 1.6rem;
+    text-transform: lowercase;
+    margin: 2rem 0 0.5rem 0;
+    color: var(--mono-darkest);
+}

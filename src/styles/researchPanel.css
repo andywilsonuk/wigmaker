@@ -1,0 +1,38 @@
+.researchList>li {
+  margin-bottom: 0.5rem;
+  padding: 0.2rem 0.2rem 1rem 0.2rem;
+  border-bottom: 0.2rem solid var(--separator-color);
+  display: grid;
+  grid-template-columns: auto min-content;
+  grid-template-rows: repeat(3, auto);
+  row-gap: 0.2rem;
+}
+.researchDescriptionContainer {
+  grid-column: 1 / span 2;
+  grid-row: 3;
+}
+.researchLightContainer {
+  height: 1em;
+}
+.researchLight {
+  fill: var(--color-lightest);
+  animation: researchLightAnim 3s infinite steps(3);
+  opacity: 0;
+}
+@keyframes researchLightAnim {
+  0%,33% {
+    opacity: 0;
+  }
+  66% {
+    opacity: 1;
+  }
+}
+.researchLight:nth-child(1) {
+  animation-delay: -2s;
+}
+.researchLight:nth-child(2) {
+  animation-delay: -1s;
+}
+.gamePaused .researchLight {
+  animation-play-state: paused;
+}

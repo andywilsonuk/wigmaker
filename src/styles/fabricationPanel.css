@@ -1,0 +1,56 @@
+.fabricationTable {
+  margin-bottom: 1rem;
+}
+.fabricationTable>tr>td {
+  vertical-align: top;
+}
+.fabricationTable>tr>td:nth-child(1) {
+  width: 55%;
+}
+.fabricationTable>tr>td:nth-child(2) {
+  width: 5%;
+}
+.fabricationTable>tr>td:nth-child(3) {
+  width: 20%;
+  text-align: right;
+  white-space: nowrap;
+  padding-right: 0.5rem;
+}
+.fabricationTable>tr>td:nth-child(4) {
+  width: auto;
+}
+.fabricationTable>tr>td:nth-child(5) {
+  width: 10%;
+  white-space: nowrap;
+  text-align: center;
+}
+.fabricationTable>tr>td:nth-child(6) {
+  width: auto;
+}
+.fabricationWigSwitch {
+  background-color: transparent;
+  border: 0.1rem solid var(--alt-mid);
+  text-align: left;
+  margin-left: -0.2rem;
+  padding: 0 0.2rem;
+  color: inherit;
+  white-space: initial;
+  width: initial;
+}
+.fabricationStalledIcon {
+  fill: var(--color-mid);
+  stroke: var(--color-mid);
+  visibility: hidden;
+  height: 1.6rem;
+}
+.fabricationStalledIconShow {
+  visibility: visible;
+}
+.allocationButtonCell>button {
+  padding: 0;
+}
+.allocationChangeIcon {
+  shape-rendering: crispEdges;
+  width: 1rem;
+  vertical-align: middle;
+}

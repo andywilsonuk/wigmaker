@@ -1,0 +1,59 @@
+:root {
+    --dialogOuterBackground: rgb(0, 0, 0, 0.5);
+}
+
+.dialogOverlay {
+    background-color: var(--dialogOuterBackground);
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+.dialog {
+    border: 0.2rem solid var(--black);
+    border-radius: 1rem;
+    width: 50%;
+    margin: 2% auto 0 auto;
+    background-color: var(--mono-light);
+    padding: 1rem;
+    color: var(--black);
+}
+.dialogHeader {
+    font-size: 1.6rem;
+    margin-bottom: 0.4rem;
+}
+.dialog .flexRow {
+    margin-top: 1rem;
+    gap: 1rem;
+}
+.dialogButton {
+    background-color: var(--white);
+    border: 0.1rem solid transparent;
+    color: inherit;
+}
+.dialogButton:hover:not([disabled]) {
+    background-color: var(--mono-mid);
+}
+.dialogButton:disabled {
+    background-color: var(--mono-light);
+    border-color: var(--mono-dark);
+}
+.dialogButton.confirm {
+    background-color: var(--color-lightest);
+    border-color: var(--mono-dark);
+    margin-left: 0;
+}
+textarea {
+    width: 100%;
+    height: 20rem;
+    font-size: 0.7rem;
+    resize: none;
+    box-sizing: border-box;
+}
+a,a:link,a:visited,a:active {
+    color: var(--mono-dark);
+}
+a:hover {
+    color: var(--color-light);
+}

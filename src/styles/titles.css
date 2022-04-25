@@ -1,0 +1,91 @@
+.titlesContainer {
+  margin: 0 1vw;
+}
+.titles {
+  display: grid; 
+  grid-template-columns: 1fr 1fr; 
+  gap: 0.5rem; 
+  grid-template-areas: "titlesLeft titlesRight";
+  max-width: 800px;
+  border: 0.1rem solid var(--mono-light);
+  border-radius: 0.2rem;
+  padding: 3vh 1vw;
+  margin: 5vh auto;
+}
+.titlesRight {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-items: center;
+  gap: 2rem;
+  margin: 2rem 0;
+}
+.titlesLogo {
+  stroke: var(--black);
+  stroke-width: 5;
+  fill: none;
+  height: auto;
+}
+.titlesEars {
+  stroke-width: 7;
+}
+.logoPlus {
+  animation: titlesLogoAnim 4s infinite ease-in-out;
+  stroke-linecap: round;
+}
+@keyframes titlesLogoAnim {
+  0% {
+    transform: translateY(-10%);
+    opacity: 0;
+  }
+  25% {
+    transform: translateY(0);
+  }
+  40% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+h1.title {
+  font-size: min(4.8vw, 40pt);
+}
+.titlesButton {
+  border: 0.1rem solid transparent;
+  border-radius: 0.2rem;
+  color: var(--body-text);
+}
+.titlesButton:hover {
+  background-color: var(--mono-light);
+  border-color: var(--mono-mid);
+}
+.titlesMeshMode {
+  color: var(--color-light);
+  text-shadow: 0 0 10px var(--color-light);
+  font-size: 1.6rem;
+  letter-spacing: 0.1rem;
+}
+.installBanner {
+  position: fixed;
+  bottom: 0;
+  background-color: var(--mono-dark);
+  left: 0;
+  right: 0;
+  padding: 1rem;
+}
+.installBanner .titlesButton {
+  color: var(--white);
+}
+.installBanner .titlesButton:hover {
+  color: var(--mono-darkest);
+}
+.installIconContainer {
+  height: 1.4rem;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 0.5rem;
+  fill: var(--white);
+  stroke: var(--white);
+}

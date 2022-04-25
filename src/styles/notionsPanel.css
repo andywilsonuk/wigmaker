@@ -1,0 +1,31 @@
+.panelNotions {
+  --panel-outline: var(--color-mid);
+}
+
+.notionsList>li {
+  margin-bottom: 0.5rem;
+  padding: 0.2rem 0.2rem 1rem 0.2rem;
+  border-bottom: 0.2rem solid var(--separator-color);
+  display: grid;
+  grid-template-columns: min-content auto;
+  grid-template-rows: repeat(4, auto);
+}
+
+.notionImageContainer {
+  grid-column: 1;
+  grid-row: 1 / span 4;
+  margin-right: 0.5rem;
+}
+
+.notionImage {
+  border: 0.1rem solid var(--mono-dark);
+  min-width: 2rem;
+  min-height: 2rem;
+  fill: var(--color-mid);
+  height: auto;
+}
+
+.notionButtonContainer {
+  text-align: right;
+  margin-top: 0.5rem;
+}

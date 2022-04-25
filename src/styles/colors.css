@@ -1,0 +1,19 @@
+:root {
+    --black: rgb(18, 18, 18);
+    --white: rgb(250, 248, 248);
+    --mono-lightest: rgb(226, 226, 226);
+    --mono-light: rgb(216, 215, 215);
+    --mono-mid: rgb(168, 167, 167);
+    --mono-dark: rgb(109, 109, 109);
+    --mono-darkest: rgb(68, 68, 68);
+    --color-lightest: rgb(255, 89, 26);
+    --color-light: rgb(230, 63, 0);
+    --color-mid: rgb(179, 49, 0);
+    --color-dark: rgb(128, 35, 0);
+    --color-darkest: rgb(77, 21, 0);
+    --alt-lightest: rgb(240, 218, 191);
+    --alt-light: rgb(221, 185, 145);
+    --alt-mid: rgb(192, 166, 136);
+    --alt-darkest: rgb(43, 27, 23);
+    --black-darkmode: rgb(32, 33, 36);
+}

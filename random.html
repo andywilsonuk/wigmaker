@@ -1,0 +1,18 @@
+<script>
+    function fixedrandom(seed, p){    
+        return ((Math.sin(p) + 1) * 5 * seed) % 1;
+    }
+
+    const results = new Array(10).fill(0)
+    for (let j = 0; j < 10000; j++) {
+        const seed = Math.random() * 100000
+        
+        for (let input = 0; input < 1000 ; input++) {
+            const result = Math.floor(fixedrandom(seed, input) * 10)
+            results[result] += 1
+        }
+    }
+
+    results.forEach((value, index) => console.log(`${index}: ${value}`))
+</script>
+

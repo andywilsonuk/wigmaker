@@ -1,0 +1,110 @@
+<script>
+    const very_slow_increase = (level) => Math.floor(Math.exp(level / 10))
+    const stepping = (level) => Math.floor(20 + Math.log2(level * 20))
+    const fabricatorCosts = (level) => Math.floor(23.2 * (level - 1)) * 100
+    const campaignDuration = (level) => Math.floor(3 * ((level * 6) ^ level))
+    const campaignCash = (level) => Math.floor((15 * (level ** (2.6 + level / 10))) / 100) * 100
+    const campaignBrand2 = (level) => (level <= 10
+        ? Math.floor(Math.log(level + 0.3) * Math.log((level + 0.3) ** 6) * 90)
+        : Math.floor(Math.exp((level - 2) / 10) * (2800 * ((level - 2) ^ 5))))
+    const wigMakeLog = (level) => level < 2 ? level + 1 : Math.floor((level + 3) * level * 0.4)
+    const demand = (level) => (Math.log(1 / level) * -Math.log(level * 0.4)) / 100
+    const strandsForTrend = (level) => Math.floor(Math.log((level + 1) ** 15) + (20 * (level + 1)) + 100)
+    const power = (level) => Math.floor(3200 + ((level + 1) ** 3 * 123))
+    const bribes2 = (level) => { 
+        let multiplier = 1
+        if (level >= 20) {
+            multiplier = 1 + (level / 5) * 21
+        } else if (level >= 5) {
+            multiplier = 1 + (level / 5) * 3.8
+        }
+        console.log(`${level}=${multiplier}`)
+        return Math.floor((Math.log(level + 2) ** ((level * 0.101))) * 160000 * multiplier)
+    }
+    const pricing = (level) => 12 + Math.floor((level * 0.005) / Math.log(level * 0.1))
+    const poolExpansion = (level) => Math.floor((level + 1) ** 3) * 100000
+    const upliftMicro = (level) => Math.floor(30 * Math.exp(level / 3))
+    const upliftVogue = (level) => Math.floor(50 * Math.log2((level + 2) ** 5))
+    const upliftFalloff = (level) => Math.floor(62 * ((1 / Math.abs(25 - level + 1)) ** 0.3))
+    const hyperFab = (level) => Math.floor((((level + 1) * 37.7) ** 1.7) - level * 110.9)
+    const dataCenterCosts = (level) => Math.floor(500000000 * (Math.exp(level) ** 0.11))
+    const ultraFabChips = (level) => Math.floor(level * 1.6) * 10000
+    const meshNodesPerStep = (level) => 20000 + Math.floor((20000 * level) ** 0.9)
+    const demandNormalMaxed = (level) => 20 + Math.floor(level / 100000) * 10
+    const demandSmart = (brand) => {
+        const step = brand / 100000
+        const multiplier = 10 + (step * step) / 1000000
+        return step * multiplier
+    }
+
+    const calcValues = (fn, step) => [...Array(25).keys()].map(x => fn(x * step))
+
+    const chartData = [
+        // { fn: fabricatorCosts, title: 'Fabricator costs', step: 1 },
+        // { fn: campaignDuration, title: 'Campaign duration', step: 1 },
+        // { fn: campaignCash, title: 'Campaign cash', step: 1 },
+        // { fn: campaignBrand2, title: 'Campaign brand2', step: 1 },
+        // { fn: wigMakeLog, title: 'wig make log', step: 1 },
+        // { fn: demand, title: 'demand', step: 1 },
+        // { fn: stepping, title: 'stepping', step: 1 },
+        // { fn: strandsForTrend, title: 'strands for trend', step: 1 },
+        // { fn: very_slow_increase, title: 'Slow burner', step: 1 },
+        // { fn: power, title: 'Power', step: 1 },
+        { fn: bribes2, title: 'bribes2', step: 2 },
+        // { fn: pricing, title: 'pricing', step: 10000 },
+        // { fn: poolExpansion, title: 'Pool expansion costs', step: 1 },
+        // { fn: upliftMicro, title: 'uplift micro', step: 1 },
+        // { fn: upliftVogue, title: 'uplift vogue', step: 1 },
+        // { fn: upliftFalloff, title: 'uplift falloff', step: 4 },
+        // { fn: hyperFab, title: 'hyperFab', step: 1 },
+        // { fn: dataCenterCosts, title: 'Data center costs', step: 1 },
+        // { fn: ultraFabChips, title: 'ultraFab chips', step: 1 },
+        // { fn: meshNodesPerStep, title: ' Mesh nodes per step', step: 2 },
+        // { fn: demandNormalMaxed, title: 'demandNormalMaxed', step: 50000000 },
+        // { fn: demandSmart, title: 'demandSmart', step: 50000000 },
+    ].map((d) => ({ title: d.title, values: calcValues(d.fn, d.step), step: d.step}))
+</script>
+<script src="https://unpkg.com/frappe-charts@latest/dist/frappe-charts.min.umd.js"></script>
+<script type="module">
+    import { h, text, app } from "https://unpkg.com/hyperapp"
+    
+    const Generate = (state, data) => {
+        let chart = new frappe.Chart(document.getElementById(data.title), {
+            data: {
+                labels: data.values.map((_, index) => index * data.step),
+                datasets: [
+                    {
+                        name: data.title, chartType: 'line',
+                        values: data.values
+                    },
+                ],
+            },
+            title: data.title,
+            type: 'line',
+            height: 500,
+            valuesOverPoints: 1,
+        });
+        return state
+    }
+
+    const generate = (dispatch) => {
+        chartData.forEach((c) => window.setTimeout(() => dispatch([Generate, c]), 250))
+        return () => {}
+    }
+  
+    app({
+      init: {},
+      view: () =>
+        h("main", {}, [
+          h("h1", {}, text("Generators")),
+          h("div", {},
+            chartData.map((c) => h("div", { class: "chartContainer"}, [
+                h("div", { id: c.title }),
+            ]))),
+        ]),
+      node: document.getElementById("app"),
+      subscriptions: (state) => [[generate]]
+    })
+  </script>
+  
+  <main id="app"></main>

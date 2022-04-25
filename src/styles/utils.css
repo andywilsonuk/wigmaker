@@ -1,0 +1,34 @@
+.marginTop {
+  margin-top: 1rem;
+}
+.marginTopHalf {
+  margin-top: 0.5rem;
+}
+.marginRightHalf {
+  margin-right: 0.5rem;
+}
+.alignRight {
+  text-align: right;
+}
+.textBold {
+  font-weight: 700;
+}
+.spanBlock {
+  display: inline-block;
+}
+.flexRow {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.flexRowLastRight {
+  margin-left: auto;
+}
+.flexBreak {
+  flex-basis: 100%;
+  height: 0;
+}
+.flowColumn2 {
+  column-count: 2;
+}

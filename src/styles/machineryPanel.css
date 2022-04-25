@@ -1,0 +1,65 @@
+
+.machineryList>li {
+  display: grid;
+  grid-template-columns: min-content auto;
+  grid-template-rows: min-content;
+}
+
+.machineryButton {
+  border-width: 0.1rem;
+  border-style: solid;
+  border-radius: 0.2rem;
+  width: 2rem;
+  height: 1.8rem;
+  grid-column: 1;
+  grid-row-start: 1;
+  grid-row-end: span 2;
+  margin-right: 0.5rem;
+  align-self: center;
+  line-height: 1;
+}
+
+.machineryButtonOff {
+  background-color: var(--white);
+  border-color: var(--mono-mid);
+  color: var(--black);
+}
+
+.machineryButtonOn {
+  background-color: var(--mono-darkest);
+  border-color: var(--mono-dark);
+  fill: var(--white);
+}
+.machineryButtonOn > svg {
+  width: 100%;
+}
+
+.machineryButton:hover {
+  background-color: var(--mono-dark);
+}
+
+.machineryProgress {
+  width: 50%;
+  height: 0.5rem;
+  grid-column: 2;
+  background-color: var(--alt-mid);
+  margin: 0.5rem 0 0.8rem 0;
+}
+
+.machineryProgressbar {
+  vertical-align: top;
+  stroke: none;
+  transform-origin: left;
+  transform: scaleX(0);
+  fill: var(--black);
+  width: 100%;
+}
+
+.machineryProgressbarBoosted {
+  fill: var(--boosted-color);
+}
+
+.machineryWigSwitch {
+  text-align: left;
+  white-space: normal;
+}

@@ -1,0 +1,78 @@
+html[data-themeOverlay="mesh"] {
+  --action-button-background: transparent;
+  --action-button-border: var(--color-lightest);
+  --action-button-text: var(--white);
+  --action-button-hover-border: var(--color-lightest);
+  --action-button-hover-background: var(--mono-darkest);
+  --action-button-disabled-text: var(--mono-dark);
+  --action-button-disabled-border: var(--color-light);
+  --action-button-disabled-background: transparent;
+  --action-button-wait-background: var(--color-lightest);
+  --toggle-button-on-dash: var(--color-mid);
+  --separator-color: var(--color-light);
+  --dialogOuterBackground: var(--black-darkmode);
+}
+html[data-themeOverlay="mesh"] .menuButton:not([disabled]) {
+  color: var(--white);
+  background-color: var(--black-darkmode);
+}
+html[data-themeOverlay="mesh"] .menuButton:hover:not([disabled]) {
+  background-color: var(--mono-dark);
+}
+html[data-themeOverlay="mesh"] .panel,
+html[data-themeOverlay="mesh"] .panelNotions {
+  --panel-outline: transparent;
+  --panel-header-text: var(--white);
+  --panel-body-background: var(--alt-darkest);
+  --panel-text: var(--white);
+  border-color: transparent;
+}
+html[data-themeOverlay="mesh"] .panelHeader {
+  text-shadow: 0 0 0.2rem var(--white);
+  letter-spacing: 0.1em;
+  padding-bottom: 0;
+}
+html[data-themeOverlay="mesh"] .panelBody {
+  border-radius: 1rem 0.1rem 1rem 0.1rem;
+}
+html[data-themeOverlay="mesh"] .actionButtonProgressbarOn {
+  fill: url(#progressGradient);
+}
+html[data-themeOverlay="mesh"] .progressGradientStop1 {
+  stop-color: var(--action-button-wait-background);
+}
+html[data-themeOverlay="mesh"] .progressGradientStop2 {
+  stop-color: transparent;
+}
+html[data-themeOverlay="mesh"] .actionButton,
+html[data-themeOverlay="mesh"] .toggleButton {
+  border-radius: 0.3rem;
+  box-shadow: 0 0 0.1rem 0.1rem var(--color-light);
+}
+html[data-themeOverlay="mesh"] .actionButton:disabled,
+html[data-themeOverlay="mesh"] .toggleButton:disabled {
+  box-shadow: none;
+}
+html[data-themeOverlay="mesh"] .navButtonSelected {
+  background-color: var(--alt-darkest);
+  color: var(--color-lightest);
+  border-color: var(--color-mid);
+}
+html[data-themeOverlay="mesh"] .navButton:hover:not([disabled]) {
+  background-color: var(--color-mid);
+  border-color: var(--color-light);
+  color: var(--white);
+}
+html[data-themeOverlay="mesh"] .ordersViewSwitch:hover {
+  background-color: var(--mono-darkest);
+  fill: var(--color-mid);
+}
+html[data-themeOverlay="mesh"] .machineryProgress {
+  background-color: var(--color-darkest);
+}
+html[data-themeOverlay="mesh"] .machineryProgressbar {
+  fill: var(--color-lightest);
+}
+html[data-themeOverlay="mesh"] h2 {
+  color: var(--color-light);
+}

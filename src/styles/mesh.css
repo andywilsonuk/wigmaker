@@ -1,0 +1,19 @@
+.opportunityProgressbar {
+  margin: 0.5rem 0rem;
+  height: 2rem;
+  border: 0.1rem solid var(--mono-mid);
+  background-color: var(--white);
+  padding: 0.2rem;
+}
+.opportunityProgressbarSvg {
+  display:block;
+  height: 100%;
+  width: 100%;
+  stroke: var(--color-light);
+  stroke-width: 100%;
+  shape-rendering: crispEdges;
+}
+.insufficientCompute, .meshCapacityReached {
+  color: var(--color-light);
+  font-weight: 700;
+}

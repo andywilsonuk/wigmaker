@@ -1,0 +1,102 @@
+:root {
+    --action-button-background: var(--alt-mid);
+    --action-button-border: var(--alt-darkest);
+    --action-button-text: var(--black);
+    --action-button-hover-border: var(--mono-dark);
+    --action-button-hover-background: var(--alt-light);
+    --action-button-disabled-text: var(--black);
+    --action-button-disabled-border: var(--alt-light);
+    --action-button-disabled-background: transparent;
+    --action-button-wait-background: var(--alt-mid);
+    --toggle-button-on-dash: var(--color-mid);
+}
+
+.actionButton,
+.toggleButton {
+    font-size: 0.9rem;
+    font-weight: 400;
+    background-color: var(--action-button-background);
+    border: 0.1rem solid var(--action-button-border);
+    border-radius: 0.2rem;
+    position: relative;
+    white-space: nowrap;
+    min-height: 2em;
+    color: var(--action-button-text);
+    stroke: var(--action-button-text);
+    fill: var(--action-button-text);
+    vertical-align: middle;
+}
+.actionButton:hover:not([disabled]),
+.toggleButton:hover:not([disabled]) {
+    border-color: var(--action-button-hover-border);
+    background-color: var(--action-button-hover-background);
+}
+.actionButton:focus,
+.toggleButton:focus {
+    background-color: var(--action-button-background);
+}
+.actionButton:disabled,
+.toggleButton:disabled {
+    color: var(--action-button-disabled-text);
+    border-color: var(--action-button-disabled-border);
+    background-color: var(--action-button-disabled-background);
+}
+
+.toggleButton {
+    text-align: center;
+    width: 2.5rem;
+    overflow: hidden;
+}
+
+.actionButtonProgressbar {
+    transform-origin: left;
+    transform: scaleX(0);
+    position: absolute;
+    top: -1px;
+    bottom: 0;
+    right: 0;
+    left: -1px;
+    stroke: none;
+    fill: none;
+    fill-opacity: 0.7;
+    pointer-events: none;
+    width: 100%;
+    height: 110%;
+    overflow: hidden;
+}
+
+.actionButtonProgressbarOn {
+    fill: var(--action-button-wait-background);
+}
+
+.toggleButtonOverlay {
+    transform: translateX(-40%);
+    animation: toggle-button-overlay-anim 3s infinite linear;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    width: 200%;
+    height: 20%;
+}
+
+@keyframes toggle-button-overlay-anim {
+    0% {
+        transform: translateX(-40%);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+.gamePaused .toggleButtonOverlay {
+    animation-play-state: paused;
+}
+
+.toggleButtonRect {
+    width: 10%;
+    height: 100%;
+    fill: var(--toggle-button-on-dash);
+    stroke: none;
+}
