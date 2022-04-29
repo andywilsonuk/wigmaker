@@ -1,11 +1,11 @@
-import { allowedCheck } from "../utils/hyperAppHelpers"
-import toggleFlags from "../utils/toggleFlags"
-import { cashString, decimalString, labelWithCost, maxedUpgrades } from "../utils/humanize"
-import { achievedLookup, research } from "../shared/milestones"
-import { floorPrecision } from "../utils/math"
-import { oneHundredThousand } from "../shared/bigNumbers"
-import { audioIds, enqueueAudio } from "../audio"
-import Memorization from "../utils/memorization"
+import { allowedCheck } from '../utils/hyperAppHelpers'
+import toggleFlags from '../utils/toggleFlags'
+import { cashString, decimalString, labelWithCost, maxedUpgrades } from '../utils/humanize'
+import { achievedLookup, research } from '../shared/milestones'
+import { floorPrecision } from '../utils/math'
+import { oneHundredThousand } from '../shared/bigNumbers'
+import { audioIds, enqueueAudio } from '../audio'
+import Memorization from '../utils/memorization'
 
 const maxLevel = 50
 
@@ -31,11 +31,11 @@ export const poolUsedString = ({ algaePool }) => decimalString(Math.floor(algaeP
 
 export const growthText = ({ algaePoolSize, algaePool }) => {
   const percent = algaePool / algaePoolSize
-  if (percent < 0.2) { return "Emergent" }
-  if (percent < 0.3) { return "Developing" }
-  if (percent < 0.5) { return "Prospering" }
-  if (percent < 0.7) { return "Flourishing" }
-  return "Blooming"
+  if (percent < 0.2) { return 'Emergent' }
+  if (percent < 0.3) { return 'Developing' }
+  if (percent < 0.5) { return 'Prospering' }
+  if (percent < 0.7) { return 'Flourishing' }
+  return 'Blooming'
 }
 
 export const AllowMakeAlgaeWigs = (state) => ({
@@ -43,14 +43,14 @@ export const AllowMakeAlgaeWigs = (state) => ({
   algaePoolLevel: 1,
   algaePoolSize: 40000,
   algaePool: 30000,
-  algaeHarvest: 0.9,
+  algaeHarvest: 0.9
 })
 
 const ExpandPool = (state) => [{
   ...state,
   cash: state.cash - costMemo.get(state.algaePoolLevel),
   algaePoolLevel: state.algaePoolLevel + 1,
-  algaePoolSize: state.algaePoolSize + nextExpansion(state.algaePoolSize),
+  algaePoolSize: state.algaePoolSize + nextExpansion(state.algaePoolSize)
 }, enqueueAudio(audioIds.button)]
 export const BuyPoolExpansion = () => allowedCheck(algaePoolExpansionAllowed, ExpandPool)
 export const AlgaeHarvestRate = (state, newRate) => [{ ...state, algaeHarvest: newRate }, enqueueAudio(audioIds.button)]
@@ -72,6 +72,6 @@ export const AlgaePoolUpdate = (state, deltaTime) => {
   return {
     ...state,
     algaePool: updatedPool - algaeToHarvest,
-    algae: state.algae + algaeToHarvest,
+    algae: state.algae + algaeToHarvest
   }
 }

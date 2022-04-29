@@ -1,22 +1,22 @@
-import { decimalString, labelWithCost } from "../utils/humanize"
-import { randomInt, randomRange, Generator } from "../utils/random"
-import { initMessage, initNews, logTransform } from "../shared/logData"
-import { vogueIncreaseMaxTransform } from "./vogueMechanic"
-import { allowedCheck } from "../utils/hyperAppHelpers"
-import { enable, finished, converted, disabled, selecting, isFinished, selected, isSelecting } from "./trendEnum"
-import Memorization from "../utils/memorization"
-import { audioIds, enqueueAudio } from "../audio"
+import { decimalString, labelWithCost } from '../utils/humanize'
+import { randomInt, randomRange, Generator } from '../utils/random'
+import { initMessage, initNews, logTransform } from '../shared/logData'
+import { vogueIncreaseMaxTransform } from './vogueMechanic'
+import { allowedCheck } from '../utils/hyperAppHelpers'
+import { enable, finished, converted, disabled, selecting, isFinished, selected, isSelecting } from './trendEnum'
+import Memorization from '../utils/memorization'
+import { audioIds, enqueueAudio } from '../audio'
 
 const titles = [
-  "Mock Tudor",
-  "Egyptian-style",
-  "Roman-esq",
-  "Brazilian",
-  "Paris-style",
-  "Old English",
-  "The Perm",
-  "Court dress",
-  "Traditional Japanese",
+  'Mock Tudor',
+  'Egyptian-style',
+  'Roman-esq',
+  'Brazilian',
+  'Paris-style',
+  'Old English',
+  'The Perm',
+  'Court dress',
+  'Traditional Japanese'
 ]
 const choiceCount = 14
 
@@ -55,7 +55,7 @@ const costMemo = new Memorization(costFn)
 export const startTrendAllowed = ({ strands, trendStatus, trendIteration }) => trendStatus === enable() && strands >= costMemo.get(trendIteration + 1)
 
 const labelFn = (trendIteration) => {
-  const increase = "Start a trend"
+  const increase = 'Start a trend'
   const increaseCost = `${decimalString(costMemo.get(trendIteration + 1))} strands`
   return labelWithCost(increase, increaseCost)
 }
@@ -63,7 +63,7 @@ const labelMemo = new Memorization(labelFn)
 export const startTrendLabel = (state) => labelMemo.get(state.trendIteration)
 
 export const trendName = ({ trendIteration }) => {
-  if (trendIteration === initialTrendIteration) { return "none" }
+  if (trendIteration === initialTrendIteration) { return 'none' }
   const cycle = Math.floor(trendIteration / titles.length) + 1
   const title = titles[trendIteration % titles.length]
   return cycle === 1 ? title : `${title} part ${cycle}`
@@ -71,18 +71,18 @@ export const trendName = ({ trendIteration }) => {
 
 const startSelectingTransform = () => ({
   trendStatus: selecting(),
-  trendDue: randomInt(2500, 3500),
+  trendDue: randomInt(2500, 3500)
 })
 
 export const TrendsVisible = (state) => ({
   ...state,
   trendStatus: disabled(),
-  trendIteration: initialTrendIteration,
+  trendIteration: initialTrendIteration
 })
 
 export const TrendsEnabled = (state) => ({
   ...state,
-  trendStatus: enable(),
+  trendStatus: enable()
 })
 
 export const StartTrendActual = (state) => [{
@@ -90,39 +90,39 @@ export const StartTrendActual = (state) => [{
   ...startSelectingTransform(),
   trendIteration: state.trendIteration + 1,
   trendProgress: 0,
-  strands: state.strands - costMemo.get(state.trendIteration + 1),
+  strands: state.strands - costMemo.get(state.trendIteration + 1)
 }, enqueueAudio(audioIds.button)]
 export const StartTrend = () => allowedCheck(startTrendAllowed, StartTrendActual)
 
-const vogueLimitIncreasedLog = initMessage("4a", "Vogue limit increased")
+const vogueLimitIncreasedLog = initMessage('4a', 'Vogue limit increased')
 export const TrendConvertToVogue = (state) => (isFinished(state.trendStatus)
   ? [{
-    ...state,
-    ...vogueIncreaseMaxTransform(state, Math.floor(state.vogueMax * 0.6)),
-    trendProgress: 0,
-    trendStatus: converted(),
-    ...logTransform(state, vogueLimitIncreasedLog),
-  }, enqueueAudio(audioIds.button)]
+      ...state,
+      ...vogueIncreaseMaxTransform(state, Math.floor(state.vogueMax * 0.6)),
+      trendProgress: 0,
+      trendStatus: converted(),
+      ...logTransform(state, vogueLimitIncreasedLog)
+    }, enqueueAudio(audioIds.button)]
   : state)
 
 export const NextTrendSelection = (state) => [{
   ...state,
-  ...startSelectingTransform(),
+  ...startSelectingTransform()
 }, enqueueAudio(audioIds.button)]
 
-const newTrendLog = initNews("4b", "A new trend has started")
+const newTrendLog = initNews('4b', 'A new trend has started')
 export const TrendFinish = (state) => [{
   ...state,
   ...state.trends,
   trendStatus: finished(),
   trendProgress: 1,
-  ...logTransform(state, newTrendLog),
+  ...logTransform(state, newTrendLog)
 }, enqueueAudio(audioIds.button)]
 
 export const IncreaseProgress = (state, progress) => [{
   ...state,
   ...startSelectingTransform(),
-  trendProgress: progress,
+  trendProgress: progress
 }, enqueueAudio(audioIds.button)]
 
 export const CorrectTrendChoice = (state) => {
@@ -133,7 +133,7 @@ export const CorrectTrendChoice = (state) => {
 export const Select = (state) => ({
   ...state,
   trendStatus: selected(),
-  trendDue: 0,
+  trendDue: 0
 })
 
 export const TrendUpdate = (state, deltaTime) => {
@@ -142,6 +142,6 @@ export const TrendUpdate = (state, deltaTime) => {
   if (trendDue < deltaTime) { return Select }
   return {
     ...state,
-    trendDue: trendDue - deltaTime,
+    trendDue: trendDue - deltaTime
   }
 }

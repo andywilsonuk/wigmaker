@@ -6,7 +6,7 @@ export const optionFlags = {
   meshTheme: 4,
   soundOff: 8,
   meshAllowed: 16,
-  flatView: 32,
+  flatView: 32
 }
 
 export const enableOption = (options, newOption) => options | newOption

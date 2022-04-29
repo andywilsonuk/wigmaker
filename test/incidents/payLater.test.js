@@ -1,11 +1,12 @@
-import incidentData, { GiftPaidBack, GiftNotPaidBack, TradePaidBack, TradeNotPaidBack } from "../../src/incidents/payLater"
-import { wigStockState, noIncidentState, logState, cashState, nylonState } from "../testUtils"
+/* eslint-env jest */
+import incidentData, { GiftPaidBack, GiftNotPaidBack, TradePaidBack, TradeNotPaidBack } from '../../src/incidents/payLater'
+import { wigStockState, noIncidentState, logState, cashState, nylonState } from '../testUtils'
 
-test("Pay later gifted, no payback", () => {
+test('Pay later gifted, no payback', () => {
   const state = {
     ...wigStockState([0, 10, 0, 0, 0]),
     ...cashState(10),
-    ...logState(),
+    ...logState()
   }
 
   const [actual] = GiftNotPaidBack(state)
@@ -13,15 +14,15 @@ test("Pay later gifted, no payback", () => {
   expect(actual).toStrictEqual({
     ...state,
     ...wigStockState([0, 9, 0, 0, 0]),
-    ...logState("3k"),
-    ...noIncidentState(),
+    ...logState('3k'),
+    ...noIncidentState()
   })
 })
-test("Pay later gifted, payback", () => {
+test('Pay later gifted, payback', () => {
   const state = {
     ...wigStockState([0, 10, 0, 0, 0]),
     ...cashState(10),
-    ...logState(),
+    ...logState()
   }
 
   const [actual] = GiftPaidBack(state)
@@ -29,17 +30,17 @@ test("Pay later gifted, payback", () => {
   expect(actual).toStrictEqual({
     ...state,
     ...wigStockState([0, 9, 0, 0, 0]),
-    ...logState("3j"),
+    ...logState('3j'),
     ...cashState(360),
-    ...noIncidentState(),
+    ...noIncidentState()
   })
 })
-test("Pay later traded, no payback", () => {
+test('Pay later traded, no payback', () => {
   const state = {
     ...wigStockState([0, 10, 0, 0, 0]),
     ...cashState(10),
     ...nylonState(5),
-    ...logState(),
+    ...logState()
   }
 
   const [actual] = TradeNotPaidBack(state)
@@ -47,16 +48,16 @@ test("Pay later traded, no payback", () => {
   expect(actual).toStrictEqual({
     ...state,
     ...wigStockState([0, 9, 0, 0, 0]),
-    ...logState("3l"),
-    ...noIncidentState(),
+    ...logState('3l'),
+    ...noIncidentState()
   })
 })
-test("Pay later traded, payback", () => {
+test('Pay later traded, payback', () => {
   const state = {
     ...wigStockState([0, 10, 0, 0, 0]),
     ...cashState(10),
     ...nylonState(5),
-    ...logState(),
+    ...logState()
   }
 
   const [actual] = TradePaidBack(state)
@@ -64,18 +65,18 @@ test("Pay later traded, payback", () => {
   expect(actual).toStrictEqual({
     ...state,
     ...wigStockState([0, 9, 0, 0, 0]),
-    ...logState("3m"),
+    ...logState('3m'),
     ...nylonState(85),
-    ...noIncidentState(),
+    ...noIncidentState()
   })
 })
-describe("Allowed check", () => {
+describe('Allowed check', () => {
   [{
     state: { ...wigStockState([0, 0, 0, 20, 0]) },
-    expected: true,
+    expected: true
   }, {
     state: { ...wigStockState([0, 0, 0, 19, 0]) },
-    expected: false,
+    expected: false
   }].forEach(({ state, expected }) => {
     it(`${JSON.stringify(state)}, result ${JSON.stringify(expected)}`, () => {
       const actual = incidentData.allowed(state)

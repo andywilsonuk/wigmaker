@@ -1,6 +1,6 @@
-import { oneHundredMillion, oneHundredThousand, tenMillion } from "../shared/bigNumbers"
-import { achievedLookup, research } from "../shared/milestones"
-import { sumArray } from "../utils/math"
+import { oneHundredMillion, oneHundredThousand, tenMillion } from '../shared/bigNumbers'
+import { achievedLookup, research } from '../shared/milestones'
+import { sumArray } from '../utils/math'
 
 export const demandPerSecond = (brand) => (brand / oneHundredThousand) * 13
 
@@ -20,6 +20,6 @@ export const demandTransform = (state, orderQuantity) => {
   if (newSmartOrders <= 0) { return undefined }
 
   return {
-    orders: orders.map((existing, index) => (index === 4 ? newSmartOrders : existing)),
+    orders: orders.map((existing, index) => (index === 4 ? newSmartOrders : existing))
   }
 }

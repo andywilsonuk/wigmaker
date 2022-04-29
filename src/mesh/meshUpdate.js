@@ -1,8 +1,8 @@
-import { audioIds, enqueueAudio } from "../audio"
-import { randomInt } from "../utils/random"
-import { capacity } from "./dataCenterMechanic"
-import { visualizationUpdate } from "./meshGridVisual"
-import { nodeLogTransform } from "./nodeLogMessages"
+import { audioIds, enqueueAudio } from '../audio'
+import { randomInt } from '../utils/random'
+import { capacity } from './dataCenterMechanic'
+import { visualizationUpdate } from './meshGridVisual'
+import { nodeLogTransform } from './nodeLogMessages'
 
 const nodesPerGrid = 64
 const initialNodesPerStep = 20000
@@ -36,7 +36,7 @@ export default (state) => {
     meshNodeAccumulation: accumulation,
     meshIteration: meshIteration + iterationsSinceLast,
     meshIterationStep: nowStep,
-    ...nodeLogTransform(state, additional),
+    ...nodeLogTransform(state, additional)
   }, visualizationUpdate(nodesPerGrid, maxIterationVisuals),
   iterationsSinceLast > 0 && meshIteration < 40 && enqueueAudio(audioIds.meshIteration)]
 }

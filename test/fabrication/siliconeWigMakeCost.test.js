@@ -1,7 +1,8 @@
-import * as siliconeWigMakeCost from "../../src/fabrication/siliconeWigMakeCost"
-import { autoSiliconState, buyLevelState, cashState, siliconState, wigCapsState } from "../testUtils"
+/* eslint-env jest */
+import * as siliconeWigMakeCost from '../../src/fabrication/siliconeWigMakeCost'
+import { autoSiliconState, buyLevelState, cashState, siliconState, wigCapsState } from '../testUtils'
 
-describe("Silicone wig cost transform", () => {
+describe('Silicone wig cost transform', () => {
   const testCases = [{
     silicon: 20,
     cash: 50,
@@ -10,7 +11,7 @@ describe("Silicone wig cost transform", () => {
     quantity: 2,
     expectedSilicon: 14,
     expectedCash: 50,
-    expectedWigCaps: 8,
+    expectedWigCaps: 8
   }, {
     silicon: 1,
     cash: 150,
@@ -19,7 +20,7 @@ describe("Silicone wig cost transform", () => {
     quantity: 3,
     expectedSilicon: 2,
     expectedCash: 90,
-    expectedWigCaps: 7,
+    expectedWigCaps: 7
   }]
   testCases.forEach(({ silicon, cash, wigCaps, autoSilicon, quantity, expectedSilicon, expectedCash, expectedWigCaps }) => {
     it(`${silicon} silicon, ${cash} cash, ${wigCaps} wigCaps with ${autoSilicon} auto. Result ${expectedSilicon} silicon, ${expectedCash} cash, ${expectedWigCaps} wigCaps`, () => {
@@ -28,7 +29,7 @@ describe("Silicone wig cost transform", () => {
         ...cashState(cash),
         ...wigCapsState(wigCaps),
         ...autoSiliconState(autoSilicon),
-        ...buyLevelState(),
+        ...buyLevelState()
       }
 
       const actual = siliconeWigMakeCost.costTransform(state, quantity)
@@ -36,36 +37,36 @@ describe("Silicone wig cost transform", () => {
       expect(actual).toStrictEqual({
         ...siliconState(expectedSilicon),
         ...cashState(expectedCash),
-        ...wigCapsState(expectedWigCaps),
+        ...wigCapsState(expectedWigCaps)
       })
     })
   })
 })
-describe("Silicone wig resource max", () => {
+describe('Silicone wig resource max', () => {
   const testCases = [{
     silicon: 20,
     cash: 50,
     wigCaps: 10,
     autoSilicon: false,
-    expected: 6,
+    expected: 6
   }, {
     silicon: 1,
     cash: 50,
     wigCaps: 10,
     autoSilicon: false,
-    expected: 0,
+    expected: 0
   }, {
     silicon: 20,
     cash: 50,
     wigCaps: 0,
     autoSilicon: false,
-    expected: 0,
+    expected: 0
   }, {
     silicon: 2,
     cash: 100,
     wigCaps: 10,
     autoSilicon: true,
-    expected: 5,
+    expected: 5
   }]
   testCases.forEach(({ silicon, cash, wigCaps, autoSilicon, expected }) => {
     it(`${silicon} silicon, ${cash} cash, ${wigCaps} wigCaps with ${autoSilicon} auto. Result ${expected}`, () => {
@@ -74,7 +75,7 @@ describe("Silicone wig resource max", () => {
         ...cashState(cash),
         ...wigCapsState(wigCaps),
         ...autoSiliconState(autoSilicon),
-        ...buyLevelState(),
+        ...buyLevelState()
       }
 
       const actual = siliconeWigMakeCost.resourceMax(state)

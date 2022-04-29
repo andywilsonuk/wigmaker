@@ -1,5 +1,5 @@
-import { buySiliconTransform, maxBuySilicon } from "../make/siliconMechanic"
-import toggleFlags from "../utils/toggleFlags"
+import { buySiliconTransform, maxBuySilicon } from '../make/siliconMechanic'
+import toggleFlags from '../utils/toggleFlags'
 
 const siliconCost = 3
 const caps = 1
@@ -16,12 +16,12 @@ export const costTransform = (state, quantity) => {
   return {
     silicon: silicon - siliconRequired,
     wigCaps: state.wigCaps - caps * quantity,
-    cash,
+    cash
   }
 }
 export const cost = () => `${siliconCost} silicon, cap`
 export const resourceMax = (state) =>
   Math.floor(Math.min(
     (state.silicon + maxBuySilicon(state)) / siliconCost,
-    state.wigCaps / caps,
+    state.wigCaps / caps
   ))

@@ -1,11 +1,11 @@
-import { navFlags } from "../shared/nav"
-import { powerSupplyId } from "../make/powerMechanic"
-import { fabricatingSubtype } from "../fabrication/fabricatingEnum"
-import toggleFlags from "../utils/toggleFlags"
-import { generateSeed } from "../utils/random"
-import { hidden as trendsHidden } from "../market/trendEnum"
-import { sceneTempFlags } from "../shared/sceneTempFlags"
-import { scenes } from "../shared/scenes"
+import { navFlags } from '../shared/nav'
+import { powerSupplyId } from '../make/powerMechanic'
+import { fabricatingSubtype } from '../fabrication/fabricatingEnum'
+import toggleFlags from '../utils/toggleFlags'
+import { generateSeed } from '../utils/random'
+import { hidden as trendsHidden } from '../market/trendEnum'
+import { sceneTempFlags } from '../shared/sceneTempFlags'
+import { scenes } from '../shared/scenes'
 
 export default {
   randSeed: generateSeed(),
@@ -51,7 +51,7 @@ export default {
     { allocated: 0, progress: 0, rate: 0, starved: false }, // wig cap
     { allocated: 0, progress: 0, rate: 0, starved: false }, // wiglet
     { allocated: 0, progress: 0, rate: 0, starved: false, subtype: fabricatingSubtype.micro }, // micro
-    { allocated: 0, progress: 0, rate: 0, starved: false }, // smart chip
+    { allocated: 0, progress: 0, rate: 0, starved: false } // smart chip
   ],
   fabricators: 2,
   fabricatorsUnallocated: 2,
@@ -102,5 +102,5 @@ export default {
   prestige: false,
   marketForcesAltView: toggleFlags.unavailable(),
   nodeLogMessageId: null,
-  autoInstall: toggleFlags.unavailable(),
+  autoInstall: toggleFlags.unavailable()
 }

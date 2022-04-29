@@ -1,9 +1,9 @@
 /* eslint-disable no-param-reassign */
-import dataProvider from "../shared/dataProvider"
-import { achievedLookup, milestone } from "../shared/milestones"
-import { allowNav, navFlags } from "../shared/nav"
-import { enableSprintMode } from "../gameEngine"
-import { audioIds, enqueueAudio } from "../audio"
+import dataProvider from '../shared/dataProvider'
+import { achievedLookup, milestone } from '../shared/milestones'
+import { allowNav, navFlags } from '../shared/nav'
+import { enableSprintMode } from '../gameEngine'
+import { audioIds, enqueueAudio } from '../audio'
 
 export const GiftCash = (state, newValue) => [{ ...state, cash: +newValue }, enqueueAudio(audioIds.button)]
 export const GiftBrand = (state, newValue) => [{ ...state, brand: +newValue }, enqueueAudio(audioIds.button)]
@@ -18,7 +18,7 @@ export const ShowResearch = (state) => [{
   research: dataProvider.allResearch.map((x) => ({ id: x.id, allowed: true, remaining: x.duration })),
   nav: allowNav(state.nav, navFlags.memo, navFlags.make, navFlags.market),
   navSelected: navFlags.make,
-  achieved: achievedLookup.include(state.achieved, milestone.manufacture, milestone.notions),
+  achieved: achievedLookup.include(state.achieved, milestone.manufacture, milestone.notions)
 }, enqueueAudio(audioIds.button)]
 
 export const ShowCampaigns = (state) => [{
@@ -26,14 +26,14 @@ export const ShowCampaigns = (state) => [{
   campaigns: dataProvider.campaigns.map((x) => ({ id: x.id, allowed: true })),
   nav: allowNav(state.nav, navFlags.memo, navFlags.make, navFlags.market),
   navSelected: navFlags.market,
-  achieved: achievedLookup.include(state.achieved, milestone.manufacture),
+  achieved: achievedLookup.include(state.achieved, milestone.manufacture)
 }, enqueueAudio(audioIds.button)]
 
 export const ShowOpportunity = (state, id) => [{
   ...state,
   opportunity: { id, progress: 0 },
   nav: allowNav(state.nav, navFlags.mesh),
-  navSelected: navFlags.mesh,
+  navSelected: navFlags.mesh
 }, enqueueAudio(audioIds.button)]
 
 export const SprintMode = (state) => [state, enableSprintMode(), enqueueAudio(audioIds.button)]

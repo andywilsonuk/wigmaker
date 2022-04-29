@@ -4,7 +4,7 @@ const transform = (stocks, newWigCount) => ({
   wigsNylon: stocks[3],
   wigsSilicone: stocks[2],
   wigsAlgae: stocks[1],
-  wigsSmart: stocks[0],
+  wigsSmart: stocks[0]
 })
 
 export default ({ wigs, wigsHair, wigsNylon, wigsSilicone, wigsAlgae, wigsSmart }, reduction) => {

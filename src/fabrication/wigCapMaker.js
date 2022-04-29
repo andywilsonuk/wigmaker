@@ -3,7 +3,7 @@ const levels = [
   2,
   1,
   0.5,
-  0.2,
+  0.2
 ].map((s) => s * 1000)
 
 export const allowed = ({ nylon }) => nylon >= nylonCost

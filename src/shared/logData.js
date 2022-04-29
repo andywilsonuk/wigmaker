@@ -1,12 +1,12 @@
-import Memorization from "../utils/memorization"
+import Memorization from '../utils/memorization'
 
 const logMaxSize = 15
 const innerMap = new Map()
 
 export const logEntryType = {
-  message: "message",
-  news: "news",
-  mesh: "mesh",
+  message: 'message',
+  news: 'news',
+  mesh: 'mesh'
 }
 
 const initEntry = (id, text, type) => {

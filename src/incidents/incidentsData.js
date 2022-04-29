@@ -1,43 +1,43 @@
-import { achievedLookup, milestone, opportunity, research } from "../shared/milestones"
-import bulkSale from "./bulkSale"
-import emergencyWig from "./emergencyWig"
-import evacuate from "./evacuate"
-import fire from "./fire"
-import firstCustomer from "./firstCustomer"
-import freeWigs from "./freeWigs"
-import gridSabotage from "./gridSabotage"
-import hacked from "./hacked"
-import jailedPolitician from "./jailedPolitician"
-import makeFail from "./makeFail"
-import nylonBuy from "./nylonBuy"
-import nylonTransfer from "./nylonTransfer"
-import payLater from "./payLater"
-import protesters from "./protesters"
-import raided from "./raided"
-import stockCheck from "./stockCheck"
-import survey from "./survey"
-import theft from "./theft"
-import theft2 from "./theft2"
-import trade from "./trade"
-import unstick from "./unstick"
-import vegans from "./vegans"
-import war from "./war"
+import { achievedLookup, milestone, opportunity, research } from '../shared/milestones'
+import bulkSale from './bulkSale'
+import emergencyWig from './emergencyWig'
+import evacuate from './evacuate'
+import fire from './fire'
+import firstCustomer from './firstCustomer'
+import freeWigs from './freeWigs'
+import gridSabotage from './gridSabotage'
+import hacked from './hacked'
+import jailedPolitician from './jailedPolitician'
+import makeFail from './makeFail'
+import nylonBuy from './nylonBuy'
+import nylonTransfer from './nylonTransfer'
+import payLater from './payLater'
+import protesters from './protesters'
+import raided from './raided'
+import stockCheck from './stockCheck'
+import survey from './survey'
+import theft from './theft'
+import theft2 from './theft2'
+import trade from './trade'
+import unstick from './unstick'
+import vegans from './vegans'
+import war from './war'
 
 const wigsMade750 = [
   freeWigs,
-  payLater,
+  payLater
 ]
 const wigsMade10K = [
   bulkSale,
   freeWigs,
   payLater,
-  trade,
+  trade
 ]
 const wigsMadePreWar = [
   evacuate,
   raided,
   stockCheck,
-  theft,
+  theft
 ]
 const warStarted = [
   emergencyWig,
@@ -45,7 +45,7 @@ const warStarted = [
   gridSabotage,
   hacked,
   stockCheck,
-  vegans,
+  vegans
 ]
 const postMesh = [
   theft2,
@@ -53,14 +53,14 @@ const postMesh = [
   gridSabotage,
   hacked,
   jailedPolitician,
-  protesters,
+  protesters
 ]
 const endgame = [
   theft2,
   gridSabotage,
   hacked,
   protesters,
-  survey,
+  survey
 ]
 
 const triggered = [
@@ -69,7 +69,7 @@ const triggered = [
   unstick,
   war,
   makeFail, // deprecated
-  nylonBuy,
+  nylonBuy
 ]
 export const incidentsList = Array.from(new Set(triggered
   .concat(wigsMade750)

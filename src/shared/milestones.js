@@ -1,4 +1,4 @@
-import LookupCache from "../utils/lookupCache"
+import LookupCache from '../utils/lookupCache'
 
 export const achievedLookup = new LookupCache()
 
@@ -17,7 +17,7 @@ export const milestone = {
   fabQuantitySwitchNewLevel: 112,
   hatDrop: 113,
   inititalGridDestroyed: 114,
-  nylonBuyEarly: 115,
+  nylonBuyEarly: 115
 }
 
 export const notion = {
@@ -43,7 +43,7 @@ export const notion = {
   operationalEfficiency: 219,
   bulkBuy3: 220,
   bulkBuy4: 221,
-  research: 222,
+  research: 222
 }
 
 export const research = {
@@ -71,7 +71,7 @@ export const research = {
   loyaltyByDesign: 321,
   droneSquadrons: 322,
   autoInstall: 314,
-  demandLinking: 324,
+  demandLinking: 324
 }
 
 export const campaign = {
@@ -105,7 +105,7 @@ export const campaign = {
   game: 427,
   politicalAcumen: 428,
   smart: 429,
-  hairToday: 430,
+  hairToday: 430
 }
 
 export const opportunity = {
@@ -119,7 +119,7 @@ export const opportunity = {
   transferDataCenter: 506,
   wipeAwayCompetitors: 507,
   doctorWaterSupply: 508,
-  controlMedia: 509,
+  controlMedia: 509
 }
 
 const checkUnique = () => {
@@ -129,6 +129,6 @@ const checkUnique = () => {
     .concat(Object.values(research))
     .concat(Object.values(opportunity))
   if (new Set(values).size === values.length) { return }
-  throw new Error("Milestone IDs are not unique")
+  throw new Error('Milestone IDs are not unique')
 }
 checkUnique()

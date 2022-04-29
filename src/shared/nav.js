@@ -1,4 +1,4 @@
-import { audioIds, enqueueAudio } from "../audio"
+import { audioIds, enqueueAudio } from '../audio'
 
 /* eslint-disable no-bitwise */
 export const navFlags = {
@@ -7,7 +7,7 @@ export const navFlags = {
   make: 1,
   market: 4,
   mesh: 8,
-  devTools: 16,
+  devTools: 16
 }
 
 const combine = (a, b) => a | b
@@ -18,5 +18,5 @@ export const hasNav = (availableNav, navToCheck) => (availableNav & navToCheck) 
 export const Navigate = (state, nav) => [{
   ...state,
   navSelected: nav,
-  nav: allowNav(state.nav, navFlags.make), // if we switch to devTools before the nav is visible we need a way to get back
+  nav: allowNav(state.nav, navFlags.make) // if we switch to devTools before the nav is visible we need a way to get back
 }, enqueueAudio(audioIds.tabChange)]

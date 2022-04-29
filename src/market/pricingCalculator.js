@@ -1,5 +1,5 @@
-import { cashString } from "../utils/humanize"
-import Memorization from "../utils/memorization"
+import { cashString } from '../utils/humanize'
+import Memorization from '../utils/memorization'
 
 const baseCost = 12
 const hairCost = baseCost
@@ -29,7 +29,7 @@ const expand = (brandUplift) => {
     wigSmart: smartLimit,
     wigSmartText: cashString(smartLimit),
     wiglet: wigletCost,
-    wigletText: cashString(wigletCost),
+    wigletText: cashString(wigletCost)
   }
 }
 

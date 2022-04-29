@@ -1,6 +1,6 @@
-import pricingCalculator from "./pricingCalculator"
-import { randomInt } from "../utils/random"
-import { weightedRate } from "../utils/rateCounter"
+import pricingCalculator from './pricingCalculator'
+import { randomInt } from '../utils/random'
+import { weightedRate } from '../utils/rateCounter'
 
 const calcWigletSales = (totalSales) => randomInt(totalSales / 2, totalSales - totalSales / 2 + 1)
 
@@ -22,7 +22,7 @@ export default (state) => {
     if (smartWigsFulfillment === 0) { return state }
     return {
       ...state,
-      smartWigsFulfillment: 0,
+      smartWigsFulfillment: 0
     }
   }
 
@@ -31,7 +31,7 @@ export default (state) => {
     wigNylonOrders - nylonWigSales,
     wigSiliconeOrders - siliconeWigSales,
     wigAlgaeOrders - algaeWigSales,
-    wigSmartOrders - smartWigSales,
+    wigSmartOrders - smartWigSales
   ]
   const wigletSales = Math.min(state.wiglets, calcWigletSales(totalSales))
 
@@ -48,12 +48,12 @@ export default (state) => {
     ...brandUpdateForSalesTransform(state, totalSales),
     smartWigsSold: state.smartWigsSold + smartWigSales,
     smartWigsFulfillment: weightedRate(state.wigsSmart / wigSmartOrders, state.smartWigsFulfillment),
-    cash: state.cash
-    + prices.wigHair * hairWigSales
-    + prices.wigNylon * nylonWigSales
-    + prices.wigSilicone * siliconeWigSales
-    + prices.wigAlgae * algaeWigSales
-    + prices.wigSmart * smartWigSales
-    + prices.wiglet * wigletSales,
+    cash: state.cash +
+    prices.wigHair * hairWigSales +
+    prices.wigNylon * nylonWigSales +
+    prices.wigSilicone * siliconeWigSales +
+    prices.wigAlgae * algaeWigSales +
+    prices.wigSmart * smartWigSales +
+    prices.wiglet * wigletSales
   }
 }

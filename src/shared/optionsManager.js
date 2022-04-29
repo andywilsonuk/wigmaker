@@ -1,9 +1,9 @@
-import LocalStorageFacade from "../utils/localStorageFacade"
-import { objectToCodedText, textToObject } from "../utils/serializer"
-import { disableOptions, enableOption, hasOption, optionFlags, toggleOption } from "./options"
-import { mute, unmute } from "../audio"
+import LocalStorageFacade from '../utils/localStorageFacade'
+import { objectToCodedText, textToObject } from '../utils/serializer'
+import { disableOptions, enableOption, hasOption, optionFlags, toggleOption } from './options'
+import { mute, unmute } from '../audio'
 
-const store = new LocalStorageFacade("options")
+const store = new LocalStorageFacade('options')
 let options
 
 const save = () => {
@@ -12,15 +12,15 @@ const save = () => {
 
 const setTheme = () => {
   const htmlElement = document.documentElement
-  htmlElement.removeAttribute("data-theme", "dark")
-  htmlElement.removeAttribute("data-themeOverlay", "mesh")
+  htmlElement.removeAttribute('data-theme', 'dark')
+  htmlElement.removeAttribute('data-themeOverlay', 'mesh')
 
   if (hasOption(options, optionFlags.lightTheme)) { return }
 
-  htmlElement.setAttribute("data-theme", "dark")
+  htmlElement.setAttribute('data-theme', 'dark')
 
   if (hasOption(options, optionFlags.meshTheme)) {
-    htmlElement.setAttribute("data-themeOverlay", "mesh")
+    htmlElement.setAttribute('data-themeOverlay', 'mesh')
   }
 }
 
@@ -34,7 +34,7 @@ const setSound = () => {
 
 export const init = () => {
   options = store.exists() ? textToObject(store.read(), { o: null }).o : optionFlags.lightTheme
-  document.addEventListener("DOMContentLoaded", setTheme)
+  document.addEventListener('DOMContentLoaded', setTheme)
   setSound()
 }
 

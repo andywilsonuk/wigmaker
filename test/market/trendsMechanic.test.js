@@ -1,23 +1,26 @@
-import { startTrendAllowed, initialTrendIteration, trendName, CorrectTrendChoice,
+/* eslint-env jest */
+import {
+  startTrendAllowed, initialTrendIteration, trendName, CorrectTrendChoice,
   IncreaseProgress, NextTrendSelection, TrendConvertToVogue, TrendFinish, TrendsEnabled, TrendsVisible,
-  StartTrendActual, TrendUpdate, Select, choicesCalc, startTrendLabel } from "../../src/market/trendsMechanic"
-import { flagStates } from "../../src/market/trendEnum"
-import { overrideRandom } from "../../src/utils/random"
-import { logState, strandsState, trendsState, vogueLimitState, combineFlags, seedState } from "../testUtils"
+  StartTrendActual, TrendUpdate, Select, choicesCalc, startTrendLabel
+} from '../../src/market/trendsMechanic'
+import { flagStates } from '../../src/market/trendEnum'
+import { overrideRandom } from '../../src/utils/random'
+import { logState, strandsState, trendsState, vogueLimitState, combineFlags, seedState } from '../testUtils'
 
-describe("Disallowed statuses", () => {
+describe('Disallowed statuses', () => {
   const testCases = [
     flagStates.hidden,
     flagStates.disabled,
     flagStates.started,
     flagStates.selecting,
-    flagStates.finished,
+    flagStates.finished
   ]
   testCases.forEach((flagState) => {
     it(`Not allowed when status ${flagState}`, () => {
       const state = {
         ...strandsState(1000),
-        ...trendsState({ status: flagState }),
+        ...trendsState({ status: flagState })
       }
 
       const actual = startTrendAllowed(state)
@@ -26,46 +29,46 @@ describe("Disallowed statuses", () => {
     })
   })
 })
-test("Disallowed when insufficient strands", () => {
+test('Disallowed when insufficient strands', () => {
   const state = {
     ...strandsState(10),
-    ...trendsState({ status: flagStates.enabled }),
+    ...trendsState({ status: flagStates.enabled })
   }
 
   const actual = startTrendAllowed(state)
 
   expect(actual).toBe(false)
 })
-test("Allowed", () => {
+test('Allowed', () => {
   const state = {
     ...strandsState(1000),
-    ...trendsState({ status: flagStates.enabled }),
+    ...trendsState({ status: flagStates.enabled })
   }
 
   const actual = startTrendAllowed(state)
 
   expect(actual).toBe(true)
 })
-test("Cost string", () => {
+test('Cost string', () => {
   const state = {
-    ...trendsState({ iteration: initialTrendIteration }),
+    ...trendsState({ iteration: initialTrendIteration })
   }
 
   const actual = startTrendLabel(state)
 
-  expect(actual).toBe("Start a trend (120 strands)")
+  expect(actual).toBe('Start a trend (120 strands)')
 })
-describe("Name", () => {
+describe('Name', () => {
   const testCases = [
-    { iteration: initialTrendIteration, expected: "none" },
-    { iteration: 0, expected: "Mock Tudor" },
-    { iteration: 5, expected: "Old English" },
-    { iteration: 20, expected: "Roman-esq part 3" },
+    { iteration: initialTrendIteration, expected: 'none' },
+    { iteration: 0, expected: 'Mock Tudor' },
+    { iteration: 5, expected: 'Old English' },
+    { iteration: 20, expected: 'Roman-esq part 3' }
   ]
   testCases.forEach(({ iteration, expected }) => {
     it(`Iteration ${iteration}, expected ${expected}`, () => {
       const state = {
-        ...trendsState({ iteration }),
+        ...trendsState({ iteration })
       }
 
       const actual = trendName(state)
@@ -74,18 +77,18 @@ describe("Name", () => {
     })
   })
 })
-describe("Progress updates", () => {
+describe('Progress updates', () => {
   const testCases = [
     { progress: 0, rand: 0, expected: 0.01 },
     { progress: 0.1, rand: 0, expected: 0.11 },
     { progress: 0, rand: 0.9999, expected: 0.03 },
     { progress: 0.1, rand: 0, expected: 0.11 },
-    { progress: 0.1, rand: 0.9999, expected: 0.19 },
+    { progress: 0.1, rand: 0.9999, expected: 0.19 }
   ]
   testCases.forEach(({ progress, rand, expected }) => {
     it(`Progress ${progress} with random multipler ${rand}, expected ${expected}`, () => {
       const state = {
-        ...trendsState({ progress }),
+        ...trendsState({ progress })
       }
       overrideRandom(jest.fn().mockReturnValue(rand))
 
@@ -95,30 +98,30 @@ describe("Progress updates", () => {
     })
   })
 })
-test("Trends updates from hidden to disabled", () => {
+test('Trends updates from hidden to disabled', () => {
   const state = { ...trendsState({ status: flagStates.hidden }) }
 
   const updatedState = TrendsVisible(state)
 
   expect(updatedState).toStrictEqual({
     ...state,
-    ...trendsState({ status: flagStates.disabled, iteration: -1 }),
+    ...trendsState({ status: flagStates.disabled, iteration: -1 })
   })
 })
-test("Trends updates from disabled to enabled", () => {
+test('Trends updates from disabled to enabled', () => {
   const state = { ...trendsState({ status: flagStates.disabled }) }
 
   const updatedState = TrendsEnabled(state)
 
   expect(updatedState).toStrictEqual({
     ...state,
-    ...trendsState({ status: flagStates.enabled }),
+    ...trendsState({ status: flagStates.enabled })
   })
 })
-test("Trend started", () => {
+test('Trend started', () => {
   const state = {
     ...strandsState(1000),
-    ...trendsState({ status: flagStates.enabled, selected: "A", progress: 100, iteration: 1 }),
+    ...trendsState({ status: flagStates.enabled, selected: 'A', progress: 100, iteration: 1 })
   }
   overrideRandom(jest.fn().mockReturnValue(0))
 
@@ -131,15 +134,15 @@ test("Trend started", () => {
       status: combineFlags(flagStates.enabled, flagStates.started, flagStates.selecting),
       selectedDue: 2500,
       progress: 0,
-      iteration: 2,
-    }),
+      iteration: 2
+    })
   })
 })
-test("Convert to vogue", () => {
+test('Convert to vogue', () => {
   const state = {
     ...vogueLimitState(50, 200),
     ...trendsState({ status: flagStates.finished, progress: 100 }),
-    ...logState(),
+    ...logState()
   }
 
   const [updatedState] = TrendConvertToVogue(state)
@@ -148,12 +151,12 @@ test("Convert to vogue", () => {
     ...state,
     ...vogueLimitState(50, 320),
     ...trendsState({ status: flagStates.enabled, progress: 0 }),
-    ...logState("4a"),
+    ...logState('4a')
   })
 })
-test("Trend next selection", () => {
+test('Trend next selection', () => {
   const state = {
-    ...trendsState({ status: combineFlags(flagStates.enabled, flagStates.started), selected: "A" }),
+    ...trendsState({ status: combineFlags(flagStates.enabled, flagStates.started), selected: 'A' })
   }
   overrideRandom(jest.fn().mockReturnValue(0))
 
@@ -163,14 +166,14 @@ test("Trend next selection", () => {
     ...state,
     ...trendsState({
       status: combineFlags(flagStates.enabled, flagStates.started, flagStates.selecting),
-      selectedDue: 2500,
-    }),
+      selectedDue: 2500
+    })
   })
 })
-test("Trend finished", () => {
+test('Trend finished', () => {
   const state = {
-    ...trendsState({ status: combineFlags(flagStates.enabled, flagStates.started), selected: "A" }),
-    ...logState(),
+    ...trendsState({ status: combineFlags(flagStates.enabled, flagStates.started), selected: 'A' }),
+    ...logState()
   }
 
   const [updatedState] = TrendFinish(state)
@@ -179,14 +182,14 @@ test("Trend finished", () => {
     ...state,
     ...trendsState({
       status: combineFlags(flagStates.enabled, flagStates.started, flagStates.finished),
-      progress: 1,
+      progress: 1
     }),
-    ...logState("4b"),
+    ...logState('4b')
   })
 })
-test("Trend increase progress", () => {
+test('Trend increase progress', () => {
   const state = {
-    ...trendsState({ status: combineFlags(flagStates.enabled, flagStates.started), selected: "A", progress: 50 }),
+    ...trendsState({ status: combineFlags(flagStates.enabled, flagStates.started), selected: 'A', progress: 50 })
   }
 
   const [updatedState] = IncreaseProgress(state, 88.4)
@@ -196,13 +199,13 @@ test("Trend increase progress", () => {
     ...trendsState({
       status: combineFlags(flagStates.enabled, flagStates.started, flagStates.selecting),
       selectedDue: 2500,
-      progress: 88.4,
-    }),
+      progress: 88.4
+    })
   })
 })
-test("Correct trend choice - increment progress", () => {
+test('Correct trend choice - increment progress', () => {
   const state = {
-    ...trendsState({ progress: 0.5 }),
+    ...trendsState({ progress: 0.5 })
   }
   overrideRandom(jest.fn().mockReturnValue(0))
 
@@ -211,9 +214,9 @@ test("Correct trend choice - increment progress", () => {
   expect(action).toBe(IncreaseProgress)
   expect(progress).toBe(0.51)
 })
-test("Correct trend choice - increment progress", () => {
+test('Correct trend choice - increment progress', () => {
   const state = {
-    ...trendsState({ progress: 99 }),
+    ...trendsState({ progress: 99 })
   }
 
   const actual = CorrectTrendChoice(state)
@@ -223,7 +226,7 @@ test("Correct trend choice - increment progress", () => {
 
 const deltaTime = 100
 
-describe("Trends not selecting", () => {
+describe('Trends not selecting', () => {
   const testCases = [flagStates.hidden, flagStates.disabled, flagStates.enabled, flagStates.started, flagStates.finished]
   testCases.forEach((flagState) => {
     it(`Not selecting when ${flagState}`, () => {
@@ -235,17 +238,17 @@ describe("Trends not selecting", () => {
     })
   })
 })
-test("Selected due is decremented", () => {
+test('Selected due is decremented', () => {
   const state = { ...trendsState({ status: flagStates.selecting, selectedDue: 1000 }) }
 
   const updatedState = TrendUpdate(state, deltaTime)
 
   expect(updatedState).toStrictEqual({
     ...state,
-    ...trendsState({ status: flagStates.selecting, selectedDue: 1000 - deltaTime }),
+    ...trendsState({ status: flagStates.selecting, selectedDue: 1000 - deltaTime })
   })
 })
-test("Selected due is done", () => {
+test('Selected due is done', () => {
   const state = { ...trendsState({ status: flagStates.selecting, selectedDue: 1 }) }
   overrideRandom(jest.fn().mockReturnValue(0))
 
@@ -254,19 +257,19 @@ test("Selected due is done", () => {
   expect(actualAction).toBe(Select)
 })
 
-describe("Available choices determinism", () => {
+describe('Available choices determinism', () => {
   const testCases = [{
     progress: 0,
     iteration: 0,
-    expectedSame: true,
+    expectedSame: true
   }, {
     progress: 0.5,
     iteration: 0,
-    expectedSame: false,
+    expectedSame: false
   }, {
     progress: 0,
     iteration: 1,
-    expectedSame: false,
+    expectedSame: false
   }]
   testCases.forEach(({ progress, iteration, expectedSame }) => {
     it(`${progress} progress, ${iteration} iteration, result ${expectedSame}`, () => {

@@ -3,5 +3,5 @@ export default {
   nylon: 1,
   silicone: 2,
   algae: 3,
-  smart: 4,
+  smart: 4
 }

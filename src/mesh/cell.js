@@ -1,21 +1,21 @@
-import { nodeFlags, setNorth, setWest } from "./node"
+import { nodeFlags, setNorth, setWest } from './node'
 
-export const northNeighbour = "N"
-export const westNeighbour = "W"
+export const northNeighbour = 'N'
+export const westNeighbour = 'W'
 
 export class Cell {
-  constructor() {
+  constructor () {
     this.state = nodeFlags.off
     this.neighbours = []
     this.northNeighbour = undefined
     this.westNeighbour = undefined
   }
 
-  get unlinked() {
+  get unlinked () {
     return this.state === nodeFlags.off
   }
 
-  link(cell) {
+  link (cell) {
     if (cell === this.northNeighbour) {
       this.state = setNorth(this.state)
     } else if (cell === this.westNeighbour) {
@@ -25,7 +25,7 @@ export class Cell {
     }
   }
 
-  setNeighbour(neighbour, direction) {
+  setNeighbour (neighbour, direction) {
     this.neighbours.push(neighbour)
     if (direction === northNeighbour) {
       this.northNeighbour = neighbour
@@ -34,11 +34,11 @@ export class Cell {
     }
   }
 
-  reset() {
+  reset () {
     this.state = nodeFlags.off
   }
 
-  setOn() {
+  setOn () {
     this.state = nodeFlags.on
   }
 }

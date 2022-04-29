@@ -1,19 +1,19 @@
-import { BlockList } from "./blockList"
+import { BlockList } from './blockList'
 
 export class ProgressAllocator {
-  constructor() {
+  constructor () {
     this.allocated = new BlockList()
     this.unallocated = new BlockList()
   }
 
-  init() {
+  init () {
     this.allocated.clear()
     this.unallocated.clear()
     this.unallocated.insertAt(0, 0, 100)
     this.lastProgress = 0
   }
 
-  update(rand) {
+  update (rand) {
     const blockIndex = rand.randomInt(0, this.unallocated.count - 1)
 
     const block = this.unallocated.get(blockIndex)

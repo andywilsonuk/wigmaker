@@ -1,11 +1,11 @@
-import { saveToLocal } from "../state/statePersister"
-import { logTransform } from "./logData"
-import { achievedLookup, opportunity } from "./milestones"
+import { saveToLocal } from '../state/statePersister'
+import { logTransform } from './logData'
+import { achievedLookup, opportunity } from './milestones'
 
 const AddAchievement = (state, { id, log }) => ({
   ...state,
   achieved: achievedLookup.include(state.achieved, id),
-  ...logTransform(state, log),
+  ...logTransform(state, log)
 })
 
 const outcomeHandlerEffect = (dispatch, outcome) => {

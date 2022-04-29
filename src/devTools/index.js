@@ -1,10 +1,10 @@
-import dataProvider from "../shared/dataProvider"
-import outcomeHandler from "../shared/outcomeHandler"
-import { getIncident } from "../incidents/incidentsData"
-import { StartIncident } from "../incidents/incidentManager"
-import orderedMilestones, { categories } from "./orderedMilestones"
-import { achievedLookup } from "../shared/milestones"
-import { audioIds, enqueueAudio } from "../audio"
+import dataProvider from '../shared/dataProvider'
+import outcomeHandler from '../shared/outcomeHandler'
+import { getIncident } from '../incidents/incidentsData'
+import { StartIncident } from '../incidents/incidentManager'
+import orderedMilestones, { categories } from './orderedMilestones'
+import { achievedLookup } from '../shared/milestones'
+import { audioIds, enqueueAudio } from '../audio'
 
 let expandedMilestones
 
@@ -43,10 +43,10 @@ export const ProgressTo = (state, progressToMilestoneId) => {
 
   return [{
     ...newState,
-    incidentId: null,
+    incidentId: null
   }, enqueueAudio(audioIds.button)].concat(outcomes.map(outcomeHandler))
 }
 
 export const milestones = () => expandedMilestones
 export const isAchieved = (state, id) => achievedLookup.has(state.achieved, id)
-export const devToolsActive = window.location.hash === "#devtools"
+export const devToolsActive = window.location.hash === '#devtools'

@@ -1,9 +1,9 @@
 export class BlockList {
-  constructor() {
+  constructor () {
     this.blocks = []
   }
 
-  insert(position, size) {
+  insert (position, size) {
     let i = 0
     let nextBlock
     while (i < this.blocks.length) {
@@ -33,17 +33,17 @@ export class BlockList {
     this.insertAt(i, position, size)
   }
 
-  removeAt(index) {
+  removeAt (index) {
     this.blocks.splice(index, 1)
   }
 
-  insertAt(index, position, size) {
+  insertAt (index, position, size) {
     this.blocks.splice(index, 0, { position, size })
   }
 
-  get count() { return this.blocks.length }
+  get count () { return this.blocks.length }
 
-  get(index) { return this.blocks[index] }
+  get (index) { return this.blocks[index] }
 
-  clear() { this.blocks = [] }
+  clear () { this.blocks = [] }
 }

@@ -1,5 +1,5 @@
-import { sceneTempFlags } from "../../src/shared/sceneTempFlags"
-import toggleFlags from "../../src/utils/toggleFlags"
+import { sceneTempFlags } from '../../src/shared/sceneTempFlags'
+import toggleFlags from '../../src/utils/toggleFlags'
 
 export const wigStockState = (stocks) => ({
   wigs: stocks.reduce((a, b) => a + b, 0),
@@ -7,13 +7,13 @@ export const wigStockState = (stocks) => ({
   wigsNylon: stocks[1],
   wigsSilicone: stocks[2],
   wigsAlgae: stocks[3],
-  wigsSmart: stocks[4],
+  wigsSmart: stocks[4]
 })
 
 export const noIncidentState = () => ({
   incidentId: null,
   incidentDue: null,
-  sceneTemp: sceneTempFlags.none,
+  sceneTemp: sceneTempFlags.none
 })
 
 export const wigOrderState = (orders = [0, 0, 0, 0, 0]) => ({ orders })
@@ -32,11 +32,11 @@ export const autoPuttyState = (toggle) => ({ autoPutty: toggle ? toggleFlags.tog
 export const strandsState = (strands) => ({ strands })
 export const vogueState = (vogue) => ({ vogue })
 export const vogueLimitState = (vogueLimit, vogueMax) => ({ vogueLimit, vogueMax })
-export const trendsState = ({ status, selectedDue = "0", progress = 0, iteration = 0 }) => ({
+export const trendsState = ({ status, selectedDue = '0', progress = 0, iteration = 0 }) => ({
   trendStatus: status,
   trendIteration: iteration,
   trendDue: selectedDue,
-  trendProgress: progress,
+  trendProgress: progress
 })
 export const microState = (micro, microBio) => ({ micro, microBio })
 export const algaeState = (algae) => ({ algae })

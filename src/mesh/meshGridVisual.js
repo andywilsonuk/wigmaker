@@ -1,6 +1,6 @@
-import { effectWithPayload } from "../utils/hyperAppHelpers"
-import { Generator } from "../utils/random"
-import { init, next, reset } from "./meshGen"
+import { effectWithPayload } from '../utils/hyperAppHelpers'
+import { Generator } from '../utils/random'
+import { init, next, reset } from './meshGen'
 
 let meshGrid
 let lastStep = 0

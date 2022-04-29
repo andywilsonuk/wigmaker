@@ -1,9 +1,10 @@
-import Memorization from "../../src/utils/memorization"
+/* eslint-env jest */
+import Memorization from '../../src/utils/memorization'
 
 const source = { a: 1 }
 const calculated = { b: 2 }
 
-test("First time", () => {
+test('First time', () => {
   const mockCalc = jest.fn(() => calculated)
   const memo = new Memorization(mockCalc)
 
@@ -12,7 +13,7 @@ test("First time", () => {
   expect(result).toBe(calculated)
   expect(mockCalc.mock.calls[0][0]).toBe(source)
 })
-test("Same source", () => {
+test('Same source', () => {
   const mockCalc = jest.fn(() => calculated)
   const memo = new Memorization(mockCalc)
 
@@ -21,7 +22,7 @@ test("Same source", () => {
 
   expect(mockCalc.mock.calls.length).toBe(1)
 })
-test("Changed source", () => {
+test('Changed source', () => {
   const mockCalc = jest.fn(() => calculated)
   const memo = new Memorization(mockCalc)
 

@@ -1,21 +1,22 @@
-import intToChar from "../../src/utils/intToChar"
+/* eslint-env jest */
+import intToChar from '../../src/utils/intToChar'
 
-describe("Integer to character", () => {
+describe('Integer to character', () => {
   const testCases = [{
     value: 1,
-    expected: "a",
+    expected: 'a'
   }, {
     value: 11,
-    expected: "k",
+    expected: 'k'
   }, {
     value: 26,
-    expected: "z",
+    expected: 'z'
   }, {
     value: 27,
-    expected: "A",
+    expected: 'A'
   }, {
     value: 31,
-    expected: "E",
+    expected: 'E'
   }]
   testCases.forEach(({ value, expected }) => {
     it(`${value}, result ${expected}`, () => {
@@ -25,7 +26,7 @@ describe("Integer to character", () => {
     })
   })
 })
-test("Overflow", () => {
+test('Overflow', () => {
   const value = 26 + 26
 
   expect(() => intToChar(value)).toThrow()

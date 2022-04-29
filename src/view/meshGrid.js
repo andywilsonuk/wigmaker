@@ -1,12 +1,12 @@
-import { memo, text } from "../hyperapp"
-import { svg, rect, container } from "../viewComponents"
-import { meshProjection, meshGridAvailable, visualizationKey } from "../mesh/meshGridVisual"
-import { hasDirection, nodeFlags } from "../mesh/node"
+import { memo, text } from '../hyperapp'
+import { svg, rect, container } from '../viewComponents'
+import { meshProjection, meshGridAvailable, visualizationKey } from '../mesh/meshGridVisual'
+import { hasDirection, nodeFlags } from '../mesh/node'
 
 const viewBoxSize = 120
-const node = (x, y, size, on) => rect(x, y, size, size, { key: `node${x},${y}`, class: ["meshGridNode", on && "meshGridNodeOn"] })
-const connectionVertical = (x, y, length, thickness, on) => rect(x, y, thickness, length, { key: `connv${x},${y}`, class: ["meshGridConnection", on && "meshGridConnectionOn"] })
-const connectionHortizontal = (x, y, length, thickness, on) => rect(x, y, length, thickness, { key: `connh${x},${y}`, class: ["meshGridConnection", on && "meshGridConnectionOn"] })
+const node = (x, y, size, on) => rect(x, y, size, size, { key: `node${x},${y}`, class: ['meshGridNode', on && 'meshGridNodeOn'] })
+const connectionVertical = (x, y, length, thickness, on) => rect(x, y, thickness, length, { key: `connv${x},${y}`, class: ['meshGridConnection', on && 'meshGridConnectionOn'] })
+const connectionHortizontal = (x, y, length, thickness, on) => rect(x, y, length, thickness, { key: `connh${x},${y}`, class: ['meshGridConnection', on && 'meshGridConnectionOn'] })
 
 const build = () => {
   const [gridSize, nodeStates] = meshProjection()
@@ -45,9 +45,9 @@ const build = () => {
   return parts
 }
 
-const grid = () => svg(`0 0 ${viewBoxSize} ${viewBoxSize}`, { class: "meshGrid", "aria-hidden": true }, build())
+const grid = () => svg(`0 0 ${viewBoxSize} ${viewBoxSize}`, { class: 'meshGrid', 'aria-hidden': true }, build())
 
 export default ({ meshIteration }) => meshGridAvailable() && container([
   memo(grid, visualizationKey()),
-  container(text(`Iteration: ${meshIteration}`)),
+  container(text(`Iteration: ${meshIteration}`))
 ])

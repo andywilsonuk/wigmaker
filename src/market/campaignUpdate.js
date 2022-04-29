@@ -1,7 +1,7 @@
-import dataProvider from "../shared/dataProvider"
-import { initMessage, logTransform } from "../shared/logData"
+import dataProvider from '../shared/dataProvider'
+import { initMessage, logTransform } from '../shared/logData'
 
-const completedLog = initMessage("4f", "Campaign ends")
+const completedLog = initMessage('4f', 'Campaign ends')
 const Completed = (state) => {
   const campaign = dataProvider.getById(state.campaignRunning.id)
   return {
@@ -10,15 +10,15 @@ const Completed = (state) => {
       ...state.campaignRunning,
       brandIncrease: campaign.brand * (state.campaignRunning.uplifted ?? 1),
       complete: true,
-      progress: campaign.duration * (state.campaignRunning.uplifted ?? 1),
+      progress: campaign.duration * (state.campaignRunning.uplifted ?? 1)
     },
-    ...logTransform(state, completedLog),
+    ...logTransform(state, completedLog)
   }
 }
 
 const iterate = (state, progress, brandIncrease) => ({
   ...state,
-  campaignRunning: { ...state.campaignRunning, progress, brandIncrease },
+  campaignRunning: { ...state.campaignRunning, progress, brandIncrease }
 })
 
 export default (state, deltaTime) => {

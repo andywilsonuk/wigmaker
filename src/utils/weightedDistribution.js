@@ -1,6 +1,6 @@
-import { intBetween, inverseNormalize, normalize, sumArray } from "./math"
-import { random } from "./random"
-import Memorization from "./memorization"
+import { intBetween, inverseNormalize, normalize, sumArray } from './math'
+import { random } from './random'
+import Memorization from './memorization'
 
 const calcThresholds = (weights) => {
   const totalWeight = sumArray(weights)

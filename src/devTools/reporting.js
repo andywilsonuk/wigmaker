@@ -1,8 +1,8 @@
 /* eslint-disable no-console */
-import { audioIds, enqueueAudio } from "../audio"
-import dataProvider from "../shared/dataProvider"
-import { definedLogEntries } from "../shared/logData"
-import { repeatTimer } from "../utils/eventListeners"
+import { audioIds, enqueueAudio } from '../audio'
+import dataProvider from '../shared/dataProvider'
+import { definedLogEntries } from '../shared/logData'
+import { repeatTimer } from '../utils/eventListeners'
 
 export const OutputCampaigns = (state) => {
   dataProvider.campaigns.forEach((c) => console.log(c))
@@ -41,12 +41,14 @@ export const OutputMaxMessageIds = (state) => {
 
 export const IncludeGameTime = (state) => [{
   ...state,
-  gameTime: state.gameTime ?? 0,
+  gameTime: state.gameTime ?? 0
 }, enqueueAudio(audioIds.button)]
 
-export const IncrementGameTime = (state) => (state.gameTime == null ? state : {
-  ...state,
-  gameTime: state.gameTime + 1000,
-})
+export const IncrementGameTime = (state) => (state.gameTime == null
+  ? state
+  : {
+      ...state,
+      gameTime: state.gameTime + 1000
+    })
 
 export const gameTimeCounter = () => repeatTimer(IncrementGameTime, 1000)

@@ -1,12 +1,11 @@
-import { nylonBuyId } from "./incidentIds"
-import { initMessage, logTransform } from "../shared/logData"
-import { achievedLookup, notion } from "../shared/milestones"
-import { incidentOutcome, incidentTransform, JustLog } from "./common"
-import { cashString } from "../utils/humanize"
+import { nylonBuyId } from './incidentIds'
+import { initMessage, logTransform } from '../shared/logData'
+import { incidentOutcome, incidentTransform, JustLog } from './common'
+import { cashString } from '../utils/humanize'
 
-const dealLog = initMessage("3c", "A deal is made")
-const noDealLog = initMessage("3d", "Too little cash, no deal")
-const buyNothingLog = initMessage("3t", "Trader leaves disappointed")
+const dealLog = initMessage('3c', 'A deal is made')
+const noDealLog = initMessage('3d', 'Too little cash, no deal')
+const buyNothingLog = initMessage('3t', 'Trader leaves disappointed')
 
 const lowQuanity = { quantity: 100, price: 9 }
 const highQuanity = { quantity: 500, price: 35 }
@@ -16,7 +15,7 @@ export const NylonBuy = (state, { quantity, price }) => incidentOutcome({
   nylon: state.nylon + quantity,
   cash: state.cash - price,
   ...incidentTransform(state),
-  ...logTransform(state, dealLog),
+  ...logTransform(state, dealLog)
 })
 
 export const NylonBuyCheck = (state, props) =>
@@ -24,11 +23,11 @@ export const NylonBuyCheck = (state, props) =>
 
 export default {
   id: nylonBuyId,
-  title: "Nylon trading",
-  description: ["“Quality nylon at bargain prices”"],
+  title: 'Nylon trading',
+  description: ['“Quality nylon at bargain prices”'],
   actions: [
     [[NylonBuyCheck, lowQuanity], `Buy ${lowQuanity.quantity} @ ${cashString(lowQuanity.price)}`],
     [[NylonBuyCheck, highQuanity], `Buy ${highQuanity.quantity} @ ${cashString(highQuanity.price)}`],
-    [[JustLog, buyNothingLog], "Buy nothing"],
-  ],
+    [[JustLog, buyNothingLog], 'Buy nothing']
+  ]
 }

@@ -1,11 +1,11 @@
-import { microCostTransform } from "../utils/cost"
-import { allowedCheck } from "../utils/hyperAppHelpers"
-import outcomeHandler from "../shared/outcomeHandler"
-import toggleFlags from "../utils/toggleFlags"
-import { audioIds, enqueueAudio } from "../audio"
-import dataProvider from "../shared/dataProvider"
-import Memorization from "../utils/memorization"
-import { labelWithCost } from "../utils/humanize"
+import { microCostTransform } from '../utils/cost'
+import { allowedCheck } from '../utils/hyperAppHelpers'
+import outcomeHandler from '../shared/outcomeHandler'
+import toggleFlags from '../utils/toggleFlags'
+import { audioIds, enqueueAudio } from '../audio'
+import dataProvider from '../shared/dataProvider'
+import Memorization from '../utils/memorization'
+import { labelWithCost } from '../utils/humanize'
 
 export const campaignAllowed = (state, campaign) => state.campaignRunning === null && state.cash >= campaign.allowCash
 
@@ -18,24 +18,24 @@ export const CampaignStart = (state, id, auto) => {
   return [{
     ...state,
     campaignRunning: { id, progress: 0, brandIncrease: 0, complete: false },
-    cash: state.cash - allowCash,
+    cash: state.cash - allowCash
   }, !auto && enqueueAudio(audioIds.button)]
 }
 
 export const CampaignRealizeBrand = (state, auto) => (state.campaignRunning === null || !state.campaignRunning.complete
   ? state
   : [{
-    ...state,
-    campaignRunning: null,
-    brand: state.brand + Math.floor(state.campaignRunning.brandIncrease),
-    campaigns: state.campaigns.filter((c) => c.id !== state.campaignRunning.id),
-    campaignUpliftIteration: state.campaignUpliftIteration + (state.campaignRunning.uplifted === undefined ? 0 : 1),
-  }, outcomeHandler(dataProvider.getById(state.campaignRunning.id)), !auto && enqueueAudio(audioIds.button)])
+      ...state,
+      campaignRunning: null,
+      brand: state.brand + Math.floor(state.campaignRunning.brandIncrease),
+      campaigns: state.campaigns.filter((c) => c.id !== state.campaignRunning.id),
+      campaignUpliftIteration: state.campaignUpliftIteration + (state.campaignRunning.uplifted === undefined ? 0 : 1)
+    }, outcomeHandler(dataProvider.getById(state.campaignRunning.id)), !auto && enqueueAudio(audioIds.button)])
 
 const microCost = (level) => Math.floor(30 * Math.exp(level / 3))
 const microCostMemo = new Memorization(microCost)
 
-export const upliftBuyLabel = ({ campaignUpliftIteration }) => labelWithCost("Uplift modelling", `${microCostMemo.get(campaignUpliftIteration)} micro`)
+export const upliftBuyLabel = ({ campaignUpliftIteration }) => labelWithCost('Uplift modelling', `${microCostMemo.get(campaignUpliftIteration)} micro`)
 
 const upliftValue = ({ campaignRunning: { progress, uplifted } }, campaign) => {
   if (uplifted !== undefined) { return uplifted }
@@ -49,19 +49,19 @@ const UpliftCampaignActual = (state, auto) => [{
   ...microCostTransform(state.micro, state.microBio, microCostMemo.get(state.campaignUpliftIteration)),
   campaignRunning: {
     ...state.campaignRunning,
-    uplifted: auto ? 1.5 : upliftValue(state, dataProvider.getById(state.campaignRunning.id)),
-  },
+    uplifted: auto ? 1.5 : upliftValue(state, dataProvider.getById(state.campaignRunning.id))
+  }
 }, !auto && enqueueAudio(audioIds.button)]
 
 export const upliftAllowed = ({ campaignRunning, campaignUpliftIteration, micro, microBio }) =>
-  campaignRunning !== null
-  && !campaignRunning.complete
-  && campaignRunning.uplifted === undefined
-  && micro + microBio >= microCostMemo.get(campaignUpliftIteration)
+  campaignRunning !== null &&
+  !campaignRunning.complete &&
+  campaignRunning.uplifted === undefined &&
+  micro + microBio >= microCostMemo.get(campaignUpliftIteration)
 
 export const UpliftCampaign = (_, auto) => allowedCheck(upliftAllowed, UpliftCampaignActual, auto)
 
 export const ToggleAutoCampaign = (state) => [{
   ...state,
-  autoCampaign: toggleFlags.toggle(state.autoCampaign),
+  autoCampaign: toggleFlags.toggle(state.autoCampaign)
 }, enqueueAudio(audioIds.toggle)]

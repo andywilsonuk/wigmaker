@@ -3,7 +3,7 @@ export const fabricatingIndex = {
   wigCap: 1,
   wiglet: 2,
   micro: 3,
-  smartChip: 4,
+  smartChip: 4
 }
 
 export const fabricatingSubtype = {
@@ -13,5 +13,5 @@ export const fabricatingSubtype = {
   algae: 3,
   smart: 4,
   micro: 5,
-  microBio: 6,
+  microBio: 6
 }

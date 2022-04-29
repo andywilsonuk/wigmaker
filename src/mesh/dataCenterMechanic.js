@@ -1,26 +1,26 @@
-import { audioIds, enqueueAudio } from "../audio"
-import { eightBillion, fiveTrillion, oneHundredMillion } from "../shared/bigNumbers"
-import { initMessage, logTransform } from "../shared/logData"
-import { cashString, decimalString, labelWithCost, maxedUpgrades } from "../utils/humanize"
-import { allowedCheck } from "../utils/hyperAppHelpers"
-import { floorPrecision, percentOfTotalInt } from "../utils/math"
-import Memorization from "../utils/memorization"
-import toggleFlags from "../utils/toggleFlags"
+import { audioIds, enqueueAudio } from '../audio'
+import { eightBillion, fiveTrillion, oneHundredMillion } from '../shared/bigNumbers'
+import { initMessage, logTransform } from '../shared/logData'
+import { cashString, decimalString, labelWithCost, maxedUpgrades } from '../utils/humanize'
+import { allowedCheck } from '../utils/hyperAppHelpers'
+import { floorPrecision, percentOfTotalInt } from '../utils/math'
+import Memorization from '../utils/memorization'
+import toggleFlags from '../utils/toggleFlags'
 
 const names = [
-  "London",
-  "Toyko",
-  "Chicago",
-  "Houston",
-  "Boston",
-  "San Diago",
-  "Milan",
-  "Copenhagen",
-  "Karachi",
-  "Sydney",
-  "Nairobi",
-  "Lima",
-  "Rio",
+  'London',
+  'Toyko',
+  'Chicago',
+  'Houston',
+  'Boston',
+  'San Diago',
+  'Milan',
+  'Copenhagen',
+  'Karachi',
+  'Sydney',
+  'Nairobi',
+  'Lima',
+  'Rio'
 ]
 const maxDataCenters = names.length
 const microBioComputeMultiplier = 5
@@ -64,7 +64,7 @@ export const commissionAllowed = ({ dataCenters, cash, dataCenterProgress }) =>
 
 const labelFn = (dataCenters) => {
   if (maxReached(dataCenters)) { return maxedUpgrades }
-  const increase = dataCenters === names.length ? "Decentralized infrastructure" : `Commission ${names[dataCenters]} center`
+  const increase = dataCenters === names.length ? 'Decentralized infrastructure' : `Commission ${names[dataCenters]} center`
   const increaseCost = cashString(costMemo.get(dataCenters))
   return labelWithCost(increase, increaseCost)
 }
@@ -74,7 +74,7 @@ export const buyDataCenterLabel = ({ dataCenters }) => labelMemo.get(dataCenters
 const CommissionActual = (state) => [{
   ...state,
   cash: state.cash - costMemo.get(state.dataCenters),
-  dataCenterProgress: 0.001,
+  dataCenterProgress: 0.001
 }, enqueueAudio(audioIds.button)]
 export const Commission = () => allowedCheck(commissionAllowed, CommissionActual)
 
@@ -84,7 +84,7 @@ const InstallActual = (state, auto) => {
     ...state,
     micro: state.micro - microUnits,
     microBio: state.microBio - microBioUnits,
-    compute: state.compute + additionalCompute,
+    compute: state.compute + additionalCompute
   }, !auto && enqueueAudio(audioIds.button)]
 }
 export const Install = () => allowedCheck(installAllowed, InstallActual)
@@ -93,7 +93,7 @@ export const AutoInstall = (state) => (toggleFlags.isOn(state.autoInstall) ? [In
 
 export const ToggleAutoInstall = (state) => [{
   ...state,
-  autoInstall: toggleFlags.toggle(state.autoInstall),
+  autoInstall: toggleFlags.toggle(state.autoInstall)
 }, enqueueAudio(audioIds.toggle)]
 
 const defaultCommissionTime = 120
@@ -101,14 +101,14 @@ export const commissionTime = ({ dataCenters }) => (defaultCommissionTime - data
 
 export const dataCenterTransferTransform = (state) => ({
   dataCenters: Math.min(state.dataCenters + 1, maxDataCenters),
-  compute: state.compute + percentOfTotalInt(computePerDataCenter, 40),
+  compute: state.compute + percentOfTotalInt(computePerDataCenter, 40)
 })
-const commissionedMessage = initMessage("4c", "Data center complete")
+const commissionedMessage = initMessage('4c', 'Data center complete')
 const Commissioned = (state) => ({
   ...state,
   dataCenters: state.dataCenters + 1,
   dataCenterProgress: 0,
-  ...logTransform(state, commissionedMessage),
+  ...logTransform(state, commissionedMessage)
 })
 
 export const Commissioning = (state, deltaTime) => {

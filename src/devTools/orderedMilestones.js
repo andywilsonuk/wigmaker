@@ -1,12 +1,12 @@
-import dataProvider from "../shared/dataProvider"
-import { campaign, notion, milestone, research, opportunity } from "../shared/milestones"
+import dataProvider from '../shared/dataProvider'
+import { campaign, notion, milestone, research, opportunity } from '../shared/milestones'
 
 export const categories = {
-  notion: "Notion",
-  research: "Res",
-  campaign: "Camp",
-  triggered: "Trig",
-  opportunity: "Opp",
+  notion: 'Notion',
+  research: 'Res',
+  campaign: 'Camp',
+  triggered: 'Trig',
+  opportunity: 'Opp'
 }
 
 const orderMilestones = () => {
@@ -20,8 +20,8 @@ const orderMilestones = () => {
       throw new Error(`Too many milestone match iterations, probably a bad occurs milestone in ${unmatched[0].id}`)
     }
     const more = unmatched.filter((x) =>
-      x.milestones === undefined
-      || x.milestones.every((y) => matchedIds.includes(y) || (y === milestone.warStarted && matchedIds.includes(milestone.war))))
+      x.milestones === undefined ||
+      x.milestones.every((y) => matchedIds.includes(y) || (y === milestone.warStarted && matchedIds.includes(milestone.war))))
 
     matchedIds.push(...more.map((x) => x.id))
     unmatched = unmatched.filter((x) => !matchedIds.includes(x.id))
@@ -37,7 +37,7 @@ const expandOrderedMilestones = () => {
     mapCategory(categories.research, research),
     mapCategory(categories.campaign, campaign),
     mapCategory(categories.triggered, milestone),
-    mapCategory(categories.opportunity, opportunity),
+    mapCategory(categories.opportunity, opportunity)
   ]
   return orderMilestones()
     .map((id) => mappings

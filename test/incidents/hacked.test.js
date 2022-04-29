@@ -1,12 +1,13 @@
-import hackedData, { ReduceWigFabsBySpecific } from "../../src/incidents/hacked"
-import { fabricatingState, fabricatorState, logState, noIncidentState, powerDemandState } from "../testUtils"
+/* eslint-env jest */
+import hackedData, { ReduceWigFabsBySpecific } from '../../src/incidents/hacked'
+import { fabricatingState, fabricatorState, logState, noIncidentState, powerDemandState } from '../testUtils'
 
-test("Fabricators reduced 10%", () => {
+test('Fabricators reduced 10%', () => {
   const state = {
     ...fabricatorState(50),
     ...fabricatingState([{ allocated: 45 }]),
     ...powerDemandState(10000),
-    ...logState(),
+    ...logState()
   }
 
   const [actualState] = ReduceWigFabsBySpecific(state, 5)
@@ -15,17 +16,17 @@ test("Fabricators reduced 10%", () => {
     ...fabricatorState(50 - 5),
     ...fabricatingState([{ allocated: 45 - 5 }]),
     ...powerDemandState(7205),
-    ...logState("3E"),
-    ...noIncidentState(),
+    ...logState('3E'),
+    ...noIncidentState()
   })
 })
-describe("Allowed check", () => {
+describe('Allowed check', () => {
   [{
     state: { ...fabricatingState([{ allocated: 45 }]) },
-    expected: true,
+    expected: true
   }, {
     state: { ...fabricatingState([{ allocated: 15 }]) },
-    expected: false,
+    expected: false
   }].forEach(({ state, expected }) => {
     it(`${JSON.stringify(state)}, result ${JSON.stringify(expected)}`, () => {
       const actual = hackedData.allowed(state)

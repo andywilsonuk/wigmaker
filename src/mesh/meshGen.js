@@ -1,5 +1,5 @@
-import { intBetween, normalize } from "../utils/math"
-import { Cell, northNeighbour, westNeighbour } from "./cell"
+import { intBetween, normalize } from '../utils/math'
+import { Cell, northNeighbour, westNeighbour } from './cell'
 
 const weightForLast = 0.8
 

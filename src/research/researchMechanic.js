@@ -1,9 +1,9 @@
-import outcomeHandler from "../shared/outcomeHandler"
-import { costTransform } from "../utils/cost"
-import dataProvider from "../shared/dataProvider"
-import { achievedLookup, notion } from "../shared/milestones"
-import criteriaCheck from "../utils/criteriaCheck"
-import { audioIds, enqueueAudio } from "../audio"
+import outcomeHandler from '../shared/outcomeHandler'
+import { costTransform } from '../utils/cost'
+import dataProvider from '../shared/dataProvider'
+import { achievedLookup, notion } from '../shared/milestones'
+import criteriaCheck from '../utils/criteriaCheck'
+import { audioIds, enqueueAudio } from '../audio'
 
 export const ResearchVisibilityCheck = (state) => {
   const newlyVisible = dataProvider.allResearch
@@ -14,7 +14,7 @@ export const ResearchVisibilityCheck = (state) => {
   if (newlyVisible.length === 0) { return state }
   return {
     ...state,
-    research: state.research.concat(newlyVisible),
+    research: state.research.concat(newlyVisible)
   }
 }
 
@@ -26,7 +26,7 @@ const ResearchStart = (state, { id, duration, allowCost }) => [{
   strandsOn: false,
   researchId: id,
   research: state.research.map((r) => (r.id === id ? { ...r, remaining: duration } : r)),
-  ...costTransform(state, allowCost),
+  ...costTransform(state, allowCost)
 }, enqueueAudio(audioIds.button)]
 
 export const ResearchResume = (state, research) => {
@@ -44,7 +44,7 @@ export const ResearchResume = (state, research) => {
 const ResearchComplete = (state, research) => [{
   ...state,
   researchId: null,
-  research: state.research.filter((x) => x.id !== research.id),
+  research: state.research.filter((x) => x.id !== research.id)
 }, outcomeHandler(research), enqueueAudio(audioIds.researchComplete)]
 
 export const ResearchUpdate = (state, deltaTime) => {
@@ -60,7 +60,7 @@ export const ResearchUpdate = (state, deltaTime) => {
   return (remaining <= 0)
     ? [ResearchComplete, dataProvider.getById(researchId)]
     : {
-      ...state,
-      research: state.research.map((n) => (n.id === researchId ? { ...n, remaining } : n)),
-    }
+        ...state,
+        research: state.research.map((n) => (n.id === researchId ? { ...n, remaining } : n))
+      }
 }

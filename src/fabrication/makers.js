@@ -1,5 +1,5 @@
-export * as wigMaker from "./wigMaker"
-export * as wigCapMaker from "./wigCapMaker"
-export * as wigletMaker from "./wigletMaker"
-export * as microComputeMaker from "./microComputeMaker"
-export * as smartChipMaker from "./smartChipMaker"
+export * as wigMaker from './wigMaker'
+export * as wigCapMaker from './wigCapMaker'
+export * as wigletMaker from './wigletMaker'
+export * as microComputeMaker from './microComputeMaker'
+export * as smartChipMaker from './smartChipMaker'

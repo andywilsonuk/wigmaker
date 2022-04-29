@@ -1,23 +1,23 @@
-import { allowedCheck } from "../utils/hyperAppHelpers"
-import { cashString, decimalString, labelWithCost, maxedUpgrades } from "../utils/humanize"
-import { floorPrecision, sumArray } from "../utils/math"
-import Memorization from "../utils/memorization"
-import { achievedLookup, research } from "../shared/milestones"
-import { initMessage, logTransform } from "../shared/logData"
-import { audioIds, enqueueAudio } from "../audio"
+import { allowedCheck } from '../utils/hyperAppHelpers'
+import { cashString, decimalString, labelWithCost, maxedUpgrades } from '../utils/humanize'
+import { floorPrecision, sumArray } from '../utils/math'
+import Memorization from '../utils/memorization'
+import { achievedLookup, research } from '../shared/milestones'
+import { initMessage, logTransform } from '../shared/logData'
+import { audioIds, enqueueAudio } from '../audio'
 
 export const powerSupplyId = {
   initial: 0,
   grid: 1,
   solar: 2,
   wind: 3,
-  void: 4,
+  void: 4
 }
 
 const maxSupply = 100
 const powerChainingMultiplier = 4
 
-const names = ["Grid", "Grid", "Solar", "Wind", "Void"]
+const names = ['Grid', 'Grid', 'Solar', 'Wind', 'Void']
 const supplyValues = [1000, 5000, 4000, 4500, Infinity]
 const baseSupplyCosts = [0, 3200, 2800, 2650, 0]
 const augmentedSupplyCosts = [0, 223, 85, 160, 0]
@@ -65,7 +65,7 @@ export const powerDemandString = ({ powerDemand }) => powerDemandMemo.get(powerD
 
 export const powerDemandExceedsSupply = (state) => totalPowerSupply(state) < state.powerDemand
 
-const normalPowerMessage = initMessage("4e", "Normal power levels resumed")
+const normalPowerMessage = initMessage('4e', 'Normal power levels resumed')
 
 export const powerNormalTransform = (state, additional) => {
   if (additional === 0) { return undefined }
@@ -74,7 +74,7 @@ export const powerNormalTransform = (state, additional) => {
   if (currentSupply + additional < state.powerDemand) { return undefined }
   return {
     ...logTransform(state, normalPowerMessage),
-    lowPower: false,
+    lowPower: false
   }
 }
 
@@ -82,7 +82,7 @@ const BuyPowerActual = (state, supplyId) => [{
   ...state,
   powerSupply: [...state.powerSupply, supplyId],
   cash: state.cash - costs[supplyId].get(state.powerSupply, supplyId),
-  ...powerNormalTransform(state, powerSupplyValue(state, supplyId)),
+  ...powerNormalTransform(state, powerSupplyValue(state, supplyId))
 }, enqueueAudio(audioIds.button)]
 
 export const BuyPowerGrid = () => allowedCheck(buyPowerAllowed, BuyPowerActual, powerSupplyId.grid)
@@ -91,11 +91,11 @@ export const BuyPowerWind = () => allowedCheck(buyPowerAllowed, BuyPowerActual, 
 
 export const PowerEfficiencyUpgrade = (state) => ({
   ...state,
-  powerSupply: [...state.powerSupply], // force memo refresh
+  powerSupply: [...state.powerSupply] // force memo refresh
 })
 
 export const VoidPower = (state) => ({
   ...state,
   powerSupply: [powerSupplyId.void],
-  lowPower: false,
+  lowPower: false
 })

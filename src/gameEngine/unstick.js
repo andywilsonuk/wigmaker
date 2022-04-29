@@ -1,8 +1,8 @@
-import { allowed } from "../fabrication/hairWigMakeCost"
-import { unstickId } from "../incidents/incidentIds"
-import { StartIncident } from "../incidents/incidentManager"
-import { buyHairAllowed } from "../make/hairMechanic"
-import { repeatTimer } from "../utils/eventListeners"
+import { allowed } from '../fabrication/hairWigMakeCost'
+import { unstickId } from '../incidents/incidentIds'
+import { StartIncident } from '../incidents/incidentManager'
+import { buyHairAllowed } from '../make/hairMechanic'
+import { repeatTimer } from '../utils/eventListeners'
 
 let stuckSince = null
 
@@ -12,10 +12,10 @@ const CheckStuck = (state) => {
     return state
   }
   if (stuckSince === null) {
-    stuckSince = performance.now()
+    stuckSince = global.performance.now()
     return state
   }
-  if (performance.now() - 10000 < stuckSince) {
+  if (global.performance.now() - 10000 < stuckSince) {
     return state
   }
 

@@ -1,8 +1,8 @@
-import weightedDistribution from "../utils/weightedDistribution"
-import Memorization from "../utils/memorization"
-import { achievedLookup, notion, research, milestone } from "../shared/milestones"
-import { sumArray } from "../utils/math"
-import { oneHundredThousand } from "../shared/bigNumbers"
+import weightedDistribution from '../utils/weightedDistribution'
+import Memorization from '../utils/memorization'
+import { achievedLookup, notion, research, milestone } from '../shared/milestones'
+import { sumArray } from '../utils/math'
+import { oneHundredThousand } from '../shared/bigNumbers'
 
 const baseWeights = [1, 1.65, 4, 10]
 const wigAllowedAchievements = [milestone.manufacture, notion.nylonWigs, notion.siliconeWigs, research.algaeIncubator]
@@ -27,7 +27,7 @@ const levelMaxAndValue = [
   [50000, 15],
   [60000, 20],
   [70000, 30],
-  [200000, 40],
+  [200000, 40]
 ]
 const leveledDemand = levelMaxAndValue.map(([max, value], index) => [max, index === 0 ? 0 : levelMaxAndValue[index - 1][0], value])
 let leveledDemandIndex = 0
@@ -70,7 +70,7 @@ export const demandTransformWithCap = (state, orderQuantity, cap) => {
   const newOrders = weightedDistribution(weights, required)
 
   return {
-    orders: orders.map((existing, index) => existing + (newOrders[index] ?? 0)),
+    orders: orders.map((existing, index) => existing + (newOrders[index] ?? 0))
   }
 }
 

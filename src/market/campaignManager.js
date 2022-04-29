@@ -1,5 +1,5 @@
-import toggleFlags from "../utils/toggleFlags"
-import { CampaignRealizeBrand, CampaignStart, UpliftCampaign } from "./campaignMechanic"
+import toggleFlags from '../utils/toggleFlags'
+import { CampaignRealizeBrand, CampaignStart, UpliftCampaign } from './campaignMechanic'
 
 export default (state) => {
   if (!toggleFlags.isOn(state.autoCampaign)) { return state }

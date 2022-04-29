@@ -1,6 +1,7 @@
-import { progressLine } from "../../src/fabrication/fabricating"
-import { fabricatingSubtype } from "../../src/fabrication/fabricatingEnum"
-import { nylonState, siliconState, wigStockState } from "../testUtils"
+/* eslint-env jest */
+import { progressLine } from '../../src/fabrication/fabricating'
+import { fabricatingSubtype } from '../../src/fabrication/fabricatingEnum'
+import { nylonState, siliconState, wigStockState } from '../testUtils'
 
 const nylonPerMake = 2
 const siliconPerMake = 1
@@ -15,12 +16,12 @@ beforeEach(() => {
     costTransform: ({ nylon, silicon }, started, subtype) =>
       (subtype === fabricatingSubtype.nylon ? { nylon: nylon - (started * nylonPerMake) } : { silicon: silicon - (started * siliconPerMake) }),
     madeTransform: ({ wigsNylon, wigsSilicone }, made, subtype) =>
-      (subtype === fabricatingSubtype.nylon ? { ...wigStockState([0, wigsNylon + made, wigsSilicone, 0, 0]) } : { ...wigStockState([0, wigsNylon, wigsSilicone + made, 0, 0]) }),
+      (subtype === fabricatingSubtype.nylon ? { ...wigStockState([0, wigsNylon + made, wigsSilicone, 0, 0]) } : { ...wigStockState([0, wigsNylon, wigsSilicone + made, 0, 0]) })
   }
 })
 const fabricationLine = ({ allocated = 1, progress = 0, rate = 0, starved = false, subtype = fabricatingSubtype.nylon }) =>
   ({ allocated, progress, rate, starved, subtype })
-test("Fab 1 unit when has stock", () => {
+test('Fab 1 unit when has stock', () => {
   const state = { ...nylonState(10), ...wigStockState([0, 0, 0, 0, 0]) }
   const line = fabricationLine({})
   const newSubtype = fabricatingSubtype.nylon
@@ -32,7 +33,7 @@ test("Fab 1 unit when has stock", () => {
   expect(updatedState).toStrictEqual({ ...nylonState(8), ...wigStockState([0, 1, 0, 0, 0]) })
   expect(makeRate).toBe(1)
 })
-test("Fab 0 units when has no stock", () => {
+test('Fab 0 units when has no stock', () => {
   const state = { ...nylonState(0), ...wigStockState([0, 0, 0, 0, 0]) }
   const line = fabricationLine({})
   const newSubtype = fabricatingSubtype.nylon
@@ -44,7 +45,7 @@ test("Fab 0 units when has no stock", () => {
   expect(updatedState).toStrictEqual(state)
   expect(makeRate).toBe(0)
 })
-test("Fab 0 units when no allocation", () => {
+test('Fab 0 units when no allocation', () => {
   const state = { ...nylonState(0), ...wigStockState([0, 0, 0, 0, 0]) }
   const line = fabricationLine({ allocated: 0 })
   const newSubtype = fabricatingSubtype.nylon
@@ -56,7 +57,7 @@ test("Fab 0 units when no allocation", () => {
   expect(updatedState).toStrictEqual(undefined)
   expect(makeRate).toBe(undefined)
 })
-test("Fab 3 units when multiple allocated", () => {
+test('Fab 3 units when multiple allocated', () => {
   const state = { ...nylonState(10), ...wigStockState([0, 0, 0, 0, 0]) }
   const line = fabricationLine({ allocated: 3 })
   const newSubtype = fabricatingSubtype.nylon
@@ -68,7 +69,7 @@ test("Fab 3 units when multiple allocated", () => {
   expect(updatedState).toStrictEqual({ ...nylonState(4), ...wigStockState([0, 3, 0, 0, 0]) })
   expect(makeRate).toBe(3)
 })
-test("Fab 0.5 units", () => { // 1 completely made another in-progress, resources for both taken
+test('Fab 0.5 units', () => { // 1 completely made another in-progress, resources for both taken
   const state = { ...nylonState(10), ...wigStockState([0, 0, 0, 0, 0]) }
   const line = fabricationLine({})
   const newSubtype = fabricatingSubtype.nylon
@@ -80,7 +81,7 @@ test("Fab 0.5 units", () => { // 1 completely made another in-progress, resource
   expect(updatedState).toStrictEqual({ ...nylonState(6), ...wigStockState([0, 1, 0, 0, 0]) })
   expect(makeRate).toBe(1.5)
 })
-test("Fab 2 units when has existing progress", () => {
+test('Fab 2 units when has existing progress', () => {
   const state = { ...nylonState(10), ...wigStockState([0, 0, 0, 0, 0]) }
   const line = fabricationLine({ allocated: 2, progress: 5 })
   const newSubtype = fabricatingSubtype.nylon
@@ -92,7 +93,7 @@ test("Fab 2 units when has existing progress", () => {
   expect(updatedState).toStrictEqual({ ...nylonState(6), ...wigStockState([0, 2, 0, 0, 0]) })
   expect(makeRate).toBe(2.2)
 })
-test("Fab 0 units when progress not enough", () => {
+test('Fab 0 units when progress not enough', () => {
   const state = { ...nylonState(10), ...wigStockState([0, 0, 0, 0, 0]) }
   const line = fabricationLine({ progress: 2 })
   const newSubtype = fabricatingSubtype.nylon
@@ -104,7 +105,7 @@ test("Fab 0 units when progress not enough", () => {
   expect(updatedState).toStrictEqual({ ...nylonState(10), ...wigStockState([0, 0, 0, 0, 0]) })
   expect(makeRate).toBe(0.3)
 })
-test("Fab 0 units when no resources", () => {
+test('Fab 0 units when no resources', () => {
   const state = { ...nylonState(0), ...wigStockState([0, 0, 0, 0, 0]) }
   const line = fabricationLine({})
   const newSubtype = fabricatingSubtype.nylon
@@ -116,7 +117,7 @@ test("Fab 0 units when no resources", () => {
   expect(updatedState).toStrictEqual(state)
   expect(makeRate).toBe(0)
 })
-test("Fab 1 unit from progress when no more resources", () => {
+test('Fab 1 unit from progress when no more resources', () => {
   const state = { ...nylonState(0), ...wigStockState([0, 0, 0, 0, 0]) }
   const line = fabricationLine({ progress: 5 })
   const newSubtype = fabricatingSubtype.nylon
@@ -128,7 +129,7 @@ test("Fab 1 unit from progress when no more resources", () => {
   expect(updatedState).toStrictEqual({ ...nylonState(0), ...wigStockState([0, 1, 0, 0, 0]) })
   expect(makeRate).toBe(0.5)
 })
-test("Fab 0 units continuation progress when no more resources", () => {
+test('Fab 0 units continuation progress when no more resources', () => {
   const state = { ...nylonState(0), ...wigStockState([0, 0, 0, 0, 0]) }
   const line = fabricationLine({ progress: 5 })
   const newSubtype = fabricatingSubtype.nylon
@@ -140,7 +141,7 @@ test("Fab 0 units continuation progress when no more resources", () => {
   expect(updatedState).toStrictEqual({ ...nylonState(0), ...wigStockState([0, 0, 0, 0, 0]) })
   expect(makeRate).toBe(0.3)
 })
-test("Fab 1 units continuation progress when enough time only to start new", () => {
+test('Fab 1 units continuation progress when enough time only to start new', () => {
   const state = { ...nylonState(nylonPerMake), ...wigStockState([0, 0, 0, 0, 0]) }
   const line = fabricationLine({ progress: 5 })
   const newSubtype = fabricatingSubtype.nylon
@@ -152,7 +153,7 @@ test("Fab 1 units continuation progress when enough time only to start new", () 
   expect(updatedState).toStrictEqual({ ...nylonState(0), ...wigStockState([0, 1, 0, 0, 0]) })
   expect(makeRate).toBe(0.6)
 })
-test("Fab 1 unit when resources allow one even through multiple allocates", () => {
+test('Fab 1 unit when resources allow one even through multiple allocates', () => {
   const state = { ...nylonState(nylonPerMake), ...wigStockState([0, 0, 0, 0, 0]) }
   const line = fabricationLine({ allocated: 2 })
   const newSubtype = fabricatingSubtype.nylon
@@ -164,7 +165,7 @@ test("Fab 1 unit when resources allow one even through multiple allocates", () =
   expect(updatedState).toStrictEqual({ ...nylonState(0), ...wigStockState([0, 1, 0, 0, 0]) })
   expect(makeRate).toBe(1)
 })
-test("Fab 1 unit when subtype change immediate due to nothing in-progress", () => {
+test('Fab 1 unit when subtype change immediate due to nothing in-progress', () => {
   const state = { ...nylonState(10), ...siliconState(5), ...wigStockState([0, 0, 0, 0, 0]) }
   const line = fabricationLine({ subtype: fabricatingSubtype.nylon })
   const newSubtype = fabricatingSubtype.silicone
@@ -176,7 +177,7 @@ test("Fab 1 unit when subtype change immediate due to nothing in-progress", () =
   expect(updatedState).toStrictEqual({ ...nylonState(10), ...siliconState(5 - siliconPerMake), ...wigStockState([0, 0, 1, 0, 0]) })
   expect(makeRate).toBe(1)
 })
-test("Fab 1 unit when subtype change finishes one in-progress then subtype others", () => {
+test('Fab 1 unit when subtype change finishes one in-progress then subtype others', () => {
   const state = { ...nylonState(10), ...siliconState(5), ...wigStockState([0, 0, 0, 0, 0]) }
   const line = fabricationLine({ allocated: 2, progress: 5, subtype: fabricatingSubtype.nylon })
   const newSubtype = fabricatingSubtype.silicone
@@ -188,7 +189,7 @@ test("Fab 1 unit when subtype change finishes one in-progress then subtype other
   expect(updatedState).toStrictEqual({ ...nylonState(10), ...siliconState(5 - (siliconPerMake * 2)), ...wigStockState([0, 1, 1, 0, 0]) })
   expect(makeRate).toBe(2.2)
 })
-test("Fab 1 unit when subtype change immediate but no stock", () => {
+test('Fab 1 unit when subtype change immediate but no stock', () => {
   const state = { ...nylonState(10), ...siliconState(0), ...wigStockState([0, 0, 0, 0, 0]) }
   const line = fabricationLine({ subtype: fabricatingSubtype.nylon })
   const newSubtype = fabricatingSubtype.silicone
@@ -200,7 +201,7 @@ test("Fab 1 unit when subtype change immediate but no stock", () => {
   expect(updatedState).toStrictEqual(state)
   expect(makeRate).toBe(0)
 })
-test("Fab 0 units when subtype change still pending", () => {
+test('Fab 0 units when subtype change still pending', () => {
   const state = { ...nylonState(10), ...siliconState(0), ...wigStockState([0, 0, 0, 0, 0]) }
   const line = fabricationLine({ progress: 2, subtype: fabricatingSubtype.nylon })
   const newSubtype = fabricatingSubtype.silicone
@@ -212,7 +213,7 @@ test("Fab 0 units when subtype change still pending", () => {
   expect(updatedState).toStrictEqual(state)
   expect(makeRate).toBe(0.3)
 })
-test("Fab 100 units when no more resources", () => {
+test('Fab 100 units when no more resources', () => {
   const state = { ...nylonState(nylonPerMake * 10), ...wigStockState([0, 0, 0, 0, 0]) }
   const line = fabricationLine({ allocated: 100, progress: 0 })
   const newSubtype = fabricatingSubtype.nylon

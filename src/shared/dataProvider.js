@@ -1,11 +1,11 @@
-import campaignData from "../market/campaignData"
-import notionData from "../research/notionData"
-import milestoneTriggerData from "./milestoneTriggerData"
-import researchData from "../research/researchData"
-import opportunitiesData from "../mesh/opportunitiesData"
+import campaignData from '../market/campaignData'
+import notionData from '../research/notionData'
+import milestoneTriggerData from './milestoneTriggerData'
+import researchData from '../research/researchData'
+import opportunitiesData from '../mesh/opportunitiesData'
 
 class DataProvider {
-  constructor() {
+  constructor () {
     this.notions = notionData
     this.research = researchData
     this.campaigns = campaignData
@@ -20,7 +20,7 @@ class DataProvider {
     })
   }
 
-  getById(id) {
+  getById (id) {
     return this.idDictionary.get(id)
   }
 }

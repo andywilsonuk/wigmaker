@@ -1,8 +1,8 @@
-import { achievedLookup, campaign, research } from "../shared/milestones"
-import { randomRange } from "../utils/random"
-import * as demandEarly from "./demandEarly"
-import * as demandNormal from "./demandNormal"
-import * as demandSmart from "./demandSmart"
+import { achievedLookup, campaign, research } from '../shared/milestones'
+import { randomRange } from '../utils/random'
+import * as demandEarly from './demandEarly'
+import * as demandNormal from './demandNormal'
+import * as demandSmart from './demandSmart'
 
 const jitterLevelMin = 0.7
 const jitterLevelMax = 1.2
@@ -43,6 +43,6 @@ export default (state, deltaTime, fakeDemand) => {
   return {
     ...state,
     demandAccumulation: newAccumulation,
-    ...demandEngine.demandTransform(state, jitteredOrders),
+    ...demandEngine.demandTransform(state, jitteredOrders)
   }
 }

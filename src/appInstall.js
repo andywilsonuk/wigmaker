@@ -9,15 +9,15 @@ const before = (e) => {
   forceRender(dispatcher)
 }
 const initServiceWorker = () => {
-  if (window.location.hostname === "localhost") { return }
-  navigator.serviceWorker.register(new URL("service-worker.js", import.meta.url), { type: "module" })
+  if (window.location.hostname === 'localhost') { return }
+  navigator.serviceWorker.register(new URL('service-worker.js', import.meta.url), { type: 'module' })
 }
 
 export const init = (dispatch) => {
-  if (!("serviceWorker" in navigator)) { return }
+  if (!('serviceWorker' in navigator)) { return }
   dispatcher = dispatch
-  window.addEventListener("beforeinstallprompt", before)
-  window.addEventListener("load", initServiceWorker)
+  window.addEventListener('beforeinstallprompt', before)
+  window.addEventListener('load', initServiceWorker)
 }
 
 export const canInstall = () => deferredPrompt != null

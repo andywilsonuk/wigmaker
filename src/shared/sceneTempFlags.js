@@ -13,7 +13,7 @@ export const sceneTempFlags = {
   confirmReset: 8,
   restoreError: 16,
   importSuccess: 32,
-  resetSuccess: 64,
+  resetSuccess: 64
 }
 
 export const setFlag = (flags, newOption) => flags | newOption

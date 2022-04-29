@@ -1,15 +1,17 @@
-import { fabricatingSubtype, fabricatingIndex } from "./fabricatingEnum"
-import { achievedLookup, research } from "../shared/milestones"
-import { audioIds, enqueueAudio } from "../audio"
+import { fabricatingSubtype, fabricatingIndex } from './fabricatingEnum'
+import { achievedLookup, research } from '../shared/milestones'
+import { audioIds, enqueueAudio } from '../audio'
 
-const getDemand = ({ orders: [wigHairOrders, wigNylonOrders, wigSiliconeOrders, wigAlgaeOrders, wigSmartOrders],
-  wigsHair, wigsNylon, wigsSilicone, wigsAlgae, wigsSmart }) => {
+const getDemand = ({
+  orders: [wigHairOrders, wigNylonOrders, wigSiliconeOrders, wigAlgaeOrders, wigSmartOrders],
+  wigsHair, wigsNylon, wigsSilicone, wigsAlgae, wigsSmart
+}) => {
   let demand = [
     { subtype: fabricatingSubtype.hair, orders: Math.max(0, wigHairOrders - wigsHair) },
     { subtype: fabricatingSubtype.nylon, orders: Math.max(0, wigNylonOrders - wigsNylon) },
     { subtype: fabricatingSubtype.silicone, orders: Math.max(0, wigSiliconeOrders - wigsSilicone) },
     { subtype: fabricatingSubtype.algae, orders: Math.max(0, wigAlgaeOrders - wigsAlgae) },
-    { subtype: fabricatingSubtype.smart, orders: Math.max(0, wigSmartOrders - wigsSmart) },
+    { subtype: fabricatingSubtype.smart, orders: Math.max(0, wigSmartOrders - wigsSmart) }
   ].filter((d) => d.orders > 100)
   demand = demand.sort((a, b) => b.orders - a.orders)
   return demand.map((x) => x.subtype)
@@ -78,5 +80,5 @@ export const AutoMakeWigSwitch = (state) => (achievedLookup.has(state.achieved, 
 
 export const UpdateWigSelection = (state, subtype) => [{
   ...state,
-  wigMakerSubtype: subtype,
+  wigMakerSubtype: subtype
 }, enqueueAudio(audioIds.button)]

@@ -1,10 +1,10 @@
-import initial from "./initial"
-import { effectNoPayload } from "../utils/hyperAppHelpers"
-import { getOffset, setOffset } from "../utils/random"
-import LocalStorageFacade from "../utils/localStorageFacade"
-import { textToObject, objectToCodedText } from "../utils/serializer"
+import initial from './initial'
+import { effectNoPayload } from '../utils/hyperAppHelpers'
+import { getOffset, setOffset } from '../utils/random'
+import LocalStorageFacade from '../utils/localStorageFacade'
+import { textToObject, objectToCodedText } from '../utils/serializer'
 
-const store = new LocalStorageFacade("state")
+const store = new LocalStorageFacade('state')
 
 const initOffsetActual = (state) => {
   setOffset(state.randOffset)

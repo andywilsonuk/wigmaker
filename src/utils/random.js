@@ -4,27 +4,27 @@ const randomFn = (offset) => ((Math.sin(offset + baseOffset) + 1) * 5 * offset) 
 export const generateSeed = () => Math.random() * baseOffset
 
 export class Generator {
-  constructor(seed, offset) {
+  constructor (seed, offset) {
     this.seed = seed ?? generateSeed()
     this.offset = offset ?? 0
     this.rand = randomFn
   }
 
-  random() {
+  random () {
     return this.rand(this.seed + (++this.offset))
   }
 
-  randomInt(min, max) {
+  randomInt (min, max) {
     return min === max ? min : Math.floor(this.rand(this.seed + (++this.offset)) * (max - min + 1) + min)
   }
 
-  randomRange(min, max) {
+  randomRange (min, max) {
     const r = this.rand(this.seed + (++this.offset))
     const t = r * (max - min) + min
     return t
   }
 
-  setOffset(offset) {
+  setOffset (offset) {
     this.offset = offset
   }
 }

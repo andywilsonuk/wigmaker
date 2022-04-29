@@ -18,12 +18,12 @@ export const rehydrate2 = (arr, template) => {
   }
   return o
 }
-export function textToObject(text, template) {
+export function textToObject (text, template) {
   switch (text[0]) {
-    case "{": return JSON.parse(text)
-    case "w": return rehydrate1(JSON.parse(window.atob(text.substr(1))), template)
-    case "x": return rehydrate2(JSON.parse(window.atob(text.substr(1))), template)
-    default: throw new Error("Bad state data")
+    case '{': return JSON.parse(text)
+    case 'w': return rehydrate1(JSON.parse(window.atob(text.substr(1))), template)
+    case 'x': return rehydrate2(JSON.parse(window.atob(text.substr(1))), template)
+    default: throw new Error('Bad state data')
   }
 }
 export const objectToText = (obj) => JSON.stringify(obj)

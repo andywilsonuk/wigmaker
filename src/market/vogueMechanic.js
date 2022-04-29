@@ -1,15 +1,15 @@
-import { audioIds, enqueueAudio } from "../audio"
-import { oneMillion } from "../shared/bigNumbers"
-import { achievedLookup, milestone } from "../shared/milestones"
-import { decimalString } from "../utils/humanize"
-import { allowedCheck } from "../utils/hyperAppHelpers"
-import Memorization from "../utils/memorization"
+import { audioIds, enqueueAudio } from '../audio'
+import { oneMillion } from '../shared/bigNumbers'
+import { achievedLookup, milestone } from '../shared/milestones'
+import { decimalString } from '../utils/humanize'
+import { allowedCheck } from '../utils/hyperAppHelpers'
+import Memorization from '../utils/memorization'
 
 export const InitVogue = (state) => ({
   ...state,
   vogue: 0,
   vogueLimit: 15,
-  vogueMax: 120,
+  vogueMax: 120
 })
 
 export const useVogueAllowed = ({ vogue, vogueLimit }) => vogue >= vogueLimit
@@ -18,14 +18,14 @@ export const UseVogueActual = (state) => [{
   ...state,
   brand: state.brand + state.vogue,
   vogue: 0,
-  vogueLimit: Math.min(state.vogueMax, state.vogueLimit * 2),
+  vogueLimit: Math.min(state.vogueMax, state.vogueLimit * 2)
 }, enqueueAudio(audioIds.button)]
 
 export const UseVogue = () => allowedCheck(useVogueAllowed, UseVogueActual)
 
 export const vogueIncreaseMaxTransform = (state, addition) => ({
   vogueMax: state.vogueMax + addition,
-  vogueLimit: state.vogue === state.vogueLimit && state.vogueLimit === state.vogueMax ? state.vogueMax + addition : state.vogueLimit,
+  vogueLimit: state.vogue === state.vogueLimit && state.vogueLimit === state.vogueMax ? state.vogueMax + addition : state.vogueLimit
 })
 
 const vogueLimitToString = (vogueLimit) => decimalString(vogueLimit)
@@ -49,6 +49,6 @@ export const VogueUpdate = (state, deltaTime) => {
   const update = (ratePerSecond + additional) * deltaTime
   return {
     ...state,
-    vogue: Math.min(vogue + update, vogueLimit),
+    vogue: Math.min(vogue + update, vogueLimit)
   }
 }

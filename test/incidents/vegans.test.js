@@ -1,12 +1,13 @@
-import incidentData, { SellWigsToVegan } from "../../src/incidents/vegans"
-import { brandState, cashState, logState, noIncidentState, wigStockState } from "../testUtils"
+/* eslint-env jest */
+import incidentData, { SellWigsToVegan } from '../../src/incidents/vegans'
+import { brandState, cashState, logState, noIncidentState, wigStockState } from '../testUtils'
 
-test("Vegan sale", () => {
+test('Vegan sale', () => {
   const state = {
     ...cashState(10),
     ...brandState(1000, 1),
     ...wigStockState([0, 0, 0, 300, 0]),
-    ...logState(),
+    ...logState()
   }
 
   const [actualState] = SellWigsToVegan(state)
@@ -15,17 +16,17 @@ test("Vegan sale", () => {
     ...cashState(10 + 200 * 550),
     ...brandState(1000 + 200, 1),
     ...wigStockState([0, 0, 0, 300 - 200, 0]),
-    ...logState("3F"),
-    ...noIncidentState(),
+    ...logState('3F'),
+    ...noIncidentState()
   })
 })
-describe("Allowed check", () => {
+describe('Allowed check', () => {
   [{
     state: { ...wigStockState([0, 0, 0, 200, 0]) },
-    expected: true,
+    expected: true
   }, {
     state: { ...wigStockState([0, 0, 0, 199, 0]) },
-    expected: false,
+    expected: false
   }].forEach(({ state, expected }) => {
     it(`${JSON.stringify(state)}, result ${JSON.stringify(expected)}`, () => {
       const actual = incidentData.allowed(state)

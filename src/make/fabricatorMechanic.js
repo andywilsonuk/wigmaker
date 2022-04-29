@@ -1,9 +1,9 @@
-import { audioIds, enqueueAudio } from "../audio"
-import { cashString, decimalString, labelWithCost, maxedUpgrades } from "../utils/humanize"
-import { allowedCheck } from "../utils/hyperAppHelpers"
-import { floorPrecision } from "../utils/math"
-import Memorization from "../utils/memorization"
-import lowPowerCheck from "./lowPowerCheck"
+import { audioIds, enqueueAudio } from '../audio'
+import { cashString, decimalString, labelWithCost, maxedUpgrades } from '../utils/humanize'
+import { allowedCheck } from '../utils/hyperAppHelpers'
+import { floorPrecision } from '../utils/math'
+import Memorization from '../utils/memorization'
+import lowPowerCheck from './lowPowerCheck'
 
 const basePowerDemand = 300
 const maxFabricators = 10000
@@ -49,21 +49,25 @@ const BuyFabricatorActual = (state) => [{
   fabricators: state.fabricators + state.fabricatorActionQuantity,
   fabricatorsUnallocated: state.fabricatorsUnallocated + state.fabricatorActionQuantity,
   cash: state.cash - cashCostMemo.getFor2(state.fabricators, state.fabricatorActionQuantity),
-  powerDemand: state.powerDemand + powerCostMemo.getFor2(state.fabricators, state.fabricatorActionQuantity),
+  powerDemand: state.powerDemand + powerCostMemo.getFor2(state.fabricators, state.fabricatorActionQuantity)
 }, lowPowerCheck(), enqueueAudio(audioIds.button)]
 export const BuyFabricator = () => allowedCheck(buyFabricatorAllowed, BuyFabricatorActual)
 
-export const IncreaseFabricatorAllocation = (state, lineIndex) => (state.fabricatorsUnallocated === 0 ? state : [{
-  ...state,
-  fabricating: state.fabricating.map((x, i) => (i === lineIndex ? { ...x, allocated: x.allocated + Math.min(state.fabricatorActionQuantity, state.fabricatorsUnallocated) } : x)),
-  fabricatorsUnallocated: state.fabricatorsUnallocated - Math.min(state.fabricatorActionQuantity, state.fabricatorsUnallocated),
-}, enqueueAudio(audioIds.button)])
+export const IncreaseFabricatorAllocation = (state, lineIndex) => (state.fabricatorsUnallocated === 0
+  ? state
+  : [{
+      ...state,
+      fabricating: state.fabricating.map((x, i) => (i === lineIndex ? { ...x, allocated: x.allocated + Math.min(state.fabricatorActionQuantity, state.fabricatorsUnallocated) } : x)),
+      fabricatorsUnallocated: state.fabricatorsUnallocated - Math.min(state.fabricatorActionQuantity, state.fabricatorsUnallocated)
+    }, enqueueAudio(audioIds.button)])
 
-export const DecreaseFabricatorAllocation = (state, lineIndex) => (state.fabricating[lineIndex].allocated === 0 ? state : [{
-  ...state,
-  fabricating: state.fabricating.map((x, i) => (i === lineIndex ? { ...x, allocated: x.allocated - Math.min(state.fabricatorActionQuantity, x.allocated) } : x)),
-  fabricatorsUnallocated: state.fabricatorsUnallocated + Math.min(state.fabricatorActionQuantity, state.fabricating[lineIndex].allocated),
-}, enqueueAudio(audioIds.button)])
+export const DecreaseFabricatorAllocation = (state, lineIndex) => (state.fabricating[lineIndex].allocated === 0
+  ? state
+  : [{
+      ...state,
+      fabricating: state.fabricating.map((x, i) => (i === lineIndex ? { ...x, allocated: x.allocated - Math.min(state.fabricatorActionQuantity, x.allocated) } : x)),
+      fabricatorsUnallocated: state.fabricatorsUnallocated + Math.min(state.fabricatorActionQuantity, state.fabricating[lineIndex].allocated)
+    }, enqueueAudio(audioIds.button)])
 
 export const actionQuantitySwitchAllowed = (fabricators) => fabricators >= actionSwitchFabsLevel1
 

@@ -1,17 +1,17 @@
-import { allowedCheck } from "../utils/hyperAppHelpers"
-import toggleFlags from "../utils/toggleFlags"
-import lowPowerCheck from "./lowPowerCheck"
-import { cashString, decimalString, labelWithCost } from "../utils/humanize"
-import { audioIds, enqueueAudio } from "../audio"
-import Memorization from "../utils/memorization"
-import { powerNormalTransform } from "./powerMechanic"
+import { allowedCheck } from '../utils/hyperAppHelpers'
+import toggleFlags from '../utils/toggleFlags'
+import lowPowerCheck from './lowPowerCheck'
+import { cashString, decimalString, labelWithCost } from '../utils/humanize'
+import { audioIds, enqueueAudio } from '../audio'
+import Memorization from '../utils/memorization'
+import { powerNormalTransform } from './powerMechanic'
 
 const levels = [
   { cost: 30, quantity: 5 },
   { cost: 100, quantity: 100 },
   { cost: 200, quantity: 360 },
   { cost: 700, quantity: 1660 },
-  { cost: 950, quantity: 9700 },
+  { cost: 950, quantity: 9700 }
 ]
 export const buySiliconAllowed = ({ cash, buyLevel }) => cash >= levels[buyLevel].cost
 
@@ -28,7 +28,7 @@ export const buySiliconTransform = ({ buyLevel, silicon, cash }, units = 1) => {
   const requiredLots = Math.ceil(units / level.quantity)
   return {
     silicon: silicon + requiredLots * level.quantity,
-    cash: cash - requiredLots * level.cost,
+    cash: cash - requiredLots * level.cost
   }
 }
 export const maxBuySilicon = ({ cash, buyLevel, autoSilicon }) =>
@@ -36,7 +36,7 @@ export const maxBuySilicon = ({ cash, buyLevel, autoSilicon }) =>
 
 const BuyActual = (state) => [{
   ...state,
-  ...buySiliconTransform(state),
+  ...buySiliconTransform(state)
 }, enqueueAudio(audioIds.button)]
 
 export const BuySilicon = () => allowedCheck(buySiliconAllowed, BuyActual)
@@ -47,5 +47,5 @@ export const ToggleAutoSilicon = (state) => [{
   ...state,
   autoSilicon: toggleFlags.toggle(state.autoSilicon),
   powerDemand: state.powerDemand + (toggleFlags.isOn(state.autoSilicon) ? -powerDemand : powerDemand),
-  ...powerNormalTransform(state, toggleFlags.isOn(state.autoSilicon) ? powerDemand : 0),
+  ...powerNormalTransform(state, toggleFlags.isOn(state.autoSilicon) ? powerDemand : 0)
 }, lowPowerCheck(), enqueueAudio(audioIds.toggle)]

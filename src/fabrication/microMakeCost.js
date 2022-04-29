@@ -1,5 +1,5 @@
-import { buySiliconTransform, maxBuySilicon } from "../make/siliconMechanic"
-import toggleFlags from "../utils/toggleFlags"
+import { buySiliconTransform, maxBuySilicon } from '../make/siliconMechanic'
+import toggleFlags from '../utils/toggleFlags'
 
 const siliconCost = 50
 
@@ -14,7 +14,7 @@ export const costTransform = (state, quantity) => {
   }
   return {
     silicon: silicon - siliconRequired,
-    cash,
+    cash
   }
 }
 export const cost = () => `${siliconCost} silicon`

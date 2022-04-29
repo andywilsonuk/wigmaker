@@ -1,17 +1,17 @@
 export const audioIds = {
-  button: "button",
-  toggle: "toggle",
-  lowPower: "lowPower",
-  tabChange: "tabChange",
-  titlesNav: "titlesNav",
-  meshIteration: "meshIteration",
-  researchComplete: "researchComplete",
-  theEnd: "theEnd",
-  incident: "incident",
-  pause: "pause",
-  start: "start",
-  computeZero: "computeZero",
-  meshMode: "meshMode",
+  button: 'button',
+  toggle: 'toggle',
+  lowPower: 'lowPower',
+  tabChange: 'tabChange',
+  titlesNav: 'titlesNav',
+  meshIteration: 'meshIteration',
+  researchComplete: 'researchComplete',
+  theEnd: 'theEnd',
+  incident: 'incident',
+  pause: 'pause',
+  start: 'start',
+  computeZero: 'computeZero',
+  meshMode: 'meshMode'
 }
 
 let audioPlayers

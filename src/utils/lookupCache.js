@@ -1,10 +1,10 @@
 export default class LookupCache {
-  constructor() {
+  constructor () {
     this.innerSet = new Set()
     this.innerArrayRef = null
   }
 
-  refreshAsNeeded(stateArray) {
+  refreshAsNeeded (stateArray) {
     if (this.innerArrayRef !== stateArray) {
       this.innerSet.clear()
       stateArray.forEach((element) => this.innerSet.add(element))
@@ -12,18 +12,18 @@ export default class LookupCache {
     }
   }
 
-  has(stateArray, value) {
+  has (stateArray, value) {
     this.refreshAsNeeded(stateArray)
     return this.innerSet.has(value)
   }
 
-  hasAll(stateArray, values) {
+  hasAll (stateArray, values) {
     this.refreshAsNeeded(stateArray)
     return values.every((v) => this.innerSet.has(v))
   }
 
   // eslint-disable-next-line class-methods-use-this
-  include(stateArray, ...values) {
+  include (stateArray, ...values) {
     return [...new Set([...stateArray, ...values])]
   }
 }

@@ -1,8 +1,8 @@
-import { allowedCheck } from "../utils/hyperAppHelpers"
-import { microCostTransform } from "../utils/cost"
-import { decimalString, labelWithCost, maxedUpgrades, percentString } from "../utils/humanize"
-import { audioIds, enqueueAudio } from "../audio"
-import Memorization from "../utils/memorization"
+import { allowedCheck } from '../utils/hyperAppHelpers'
+import { microCostTransform } from '../utils/cost'
+import { decimalString, labelWithCost, maxedUpgrades, percentString } from '../utils/humanize'
+import { audioIds, enqueueAudio } from '../audio'
+import Memorization from '../utils/memorization'
 
 const fabricatorsPerHyper = 24
 
@@ -28,6 +28,6 @@ const BuyHyperFabActual = (state) => [{
   ...state,
   ...microCostTransform(state.micro, state.microBio, requiredMicroMemo.get(state.fabricatorHyper)),
   fabricatorHyper: state.fabricatorHyper + 1,
-  fabricatorMultiplier: state.fabricatorMultiplier + multipler(state.fabricatorHyper),
+  fabricatorMultiplier: state.fabricatorMultiplier + multipler(state.fabricatorHyper)
 }, enqueueAudio(audioIds.button)]
 export const BuyHyperFab = () => allowedCheck(buyHyperFabAllowed, BuyHyperFabActual)

@@ -1,5 +1,5 @@
-import RateCounter from "../utils/rateCounter"
-import toggleFlags from "../utils/toggleFlags"
+import RateCounter from '../utils/rateCounter'
+import toggleFlags from '../utils/toggleFlags'
 
 const rateCounter = new RateCounter()
 let lastWrite = 0

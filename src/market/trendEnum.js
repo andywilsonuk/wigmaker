@@ -5,7 +5,7 @@ export const flagStates = {
   enabled: 2,
   started: 4,
   selecting: 8,
-  finished: 16,
+  finished: 16
 }
 
 const has = (flags, flag) => (flags & flag) === flag

@@ -1,5 +1,5 @@
-import { audioIds, enqueueAudio } from "../audio"
-import { allowedCheck } from "../utils/hyperAppHelpers"
+import { audioIds, enqueueAudio } from '../audio'
+import { allowedCheck } from '../utils/hyperAppHelpers'
 
 export const boostDuration = 8000
 

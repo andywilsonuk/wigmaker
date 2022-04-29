@@ -1,10 +1,10 @@
-import { wigMaker, wigCapMaker, wigletMaker, microComputeMaker, smartChipMaker } from "./makers"
-import { fabricatingIndex, fabricatingSubtype } from "./fabricatingEnum"
-import { wigMakeLogTransform } from "./wigLogMessages"
-import { achievedLookup, milestone, research } from "../shared/milestones"
-import { boostOn } from "../make/boostMechanic"
-import Memorization from "../utils/memorization"
-import RateCounter from "../utils/rateCounter"
+import { wigMaker, wigCapMaker, wigletMaker, microComputeMaker, smartChipMaker } from './makers'
+import { fabricatingIndex, fabricatingSubtype } from './fabricatingEnum'
+import { wigMakeLogTransform } from './wigLogMessages'
+import { achievedLookup, milestone, research } from '../shared/milestones'
+import { boostOn } from '../make/boostMechanic'
+import Memorization from '../utils/memorization'
+import RateCounter from '../utils/rateCounter'
 
 const emptyProgressResult = [undefined, undefined, undefined]
 const makers = [wigMaker, wigCapMaker, wigletMaker, microComputeMaker, smartChipMaker]
@@ -91,7 +91,7 @@ export const progressLine = (state, line, newSubtype, maker, deltaTime) => {
     } else {
       updatedState = {
         ...updatedState,
-        ...maker.madeTransform(state, 1, existingSubtype),
+        ...maker.madeTransform(state, 1, existingSubtype)
       }
     }
   }
@@ -99,7 +99,7 @@ export const progressLine = (state, line, newSubtype, maker, deltaTime) => {
   updatedState = {
     ...updatedState,
     ...(startedNewSubtype === 0 ? undefined : maker.costTransform(updatedState, startedNewSubtype, newSubtype)),
-    ...(madeNewSubtype === 0 ? undefined : maker.madeTransform(updatedState, madeNewSubtype, newSubtype)),
+    ...(madeNewSubtype === 0 ? undefined : maker.madeTransform(updatedState, madeNewSubtype, newSubtype))
   }
 
   return [updatedLine, updatedState, makeRate]
@@ -138,6 +138,6 @@ export default (state, deltaTime) => {
   return {
     ...updatedState,
     ...wigMakeLogTransform(state, updatedState.wigs - previousWigCount),
-    fabricating: fabricatingUpdated,
+    fabricating: fabricatingUpdated
   }
 }

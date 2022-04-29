@@ -1,5 +1,5 @@
-import dataProvider from "../shared/dataProvider"
-import criteriaCheck from "../utils/criteriaCheck"
+import dataProvider from '../shared/dataProvider'
+import criteriaCheck from '../utils/criteriaCheck'
 
 export default (state) => {
   const newlyVisible = dataProvider.campaigns
@@ -10,6 +10,6 @@ export default (state) => {
   if (newlyVisible.length === 0) { return state }
   return {
     ...state,
-    campaigns: state.campaigns.concat(newlyVisible),
+    campaigns: state.campaigns.concat(newlyVisible)
   }
 }

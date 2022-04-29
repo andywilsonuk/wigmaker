@@ -1,20 +1,20 @@
-import { floorPrecision } from "./math"
+import { floorPrecision } from './math'
 
 /* eslint-disable max-len */
-const locale = "en-US"
-const dollars = new Intl.NumberFormat(locale, { style: "currency", currency: "USD", minimumFractionDigits: 0, maximumFractionDigits: 2, notation: "compact", compactDisplay: "short" })
-const currentDollars = new Intl.NumberFormat(locale, { style: "currency", currency: "USD", minimumSignificantDigits: 1, maximumSignificantDigits: 3, notation: "compact", compactDisplay: "short" })
-const percent = new Intl.NumberFormat(locale, { style: "percent", maximumFractionDigits: 0 })
-const percent2dp = new Intl.NumberFormat(locale, { style: "percent", minimumFractionDigits: 2, maximumFractionDigits: 2 })
-const percent5dp = new Intl.NumberFormat(locale, { style: "percent", minimumFractionDigits: 5, maximumFractionDigits: 5 })
-const decimal = new Intl.NumberFormat(locale, { style: "decimal", maximumFractionDigits: 2 })
-const decimal1dp = new Intl.NumberFormat(locale, { style: "decimal", minimumFractionDigits: 1, maximumFractionDigits: 1 })
-const decimal0dp = new Intl.NumberFormat(locale, { style: "decimal", maximumFractionDigits: 0 })
-const compact = new Intl.NumberFormat(locale, { style: "decimal", maximumFractionDigits: 2, notation: "compact", compactDisplay: "short" })
-const compact2dp = new Intl.NumberFormat(locale, { style: "decimal", minimumFractionDigits: 2, maximumFractionDigits: 2, notation: "compact", compactDisplay: "short" })
-const compactMax2dp = new Intl.NumberFormat(locale, { style: "decimal", minimumFractionDigits: 0, maximumFractionDigits: 2, notation: "compact", compactDisplay: "short" })
-const compact0dp = new Intl.NumberFormat(locale, { style: "decimal", maximumFractionDigits: 0, notation: "compact", compactDisplay: "short" })
-const shortTime = new Intl.DateTimeFormat(locale, { minute: "2-digit", second: "2-digit", fractionalSecondDigits: 3 })
+const locale = 'en-US'
+const dollars = new Intl.NumberFormat(locale, { style: 'currency', currency: 'USD', minimumFractionDigits: 0, maximumFractionDigits: 2, notation: 'compact', compactDisplay: 'short' })
+const currentDollars = new Intl.NumberFormat(locale, { style: 'currency', currency: 'USD', minimumSignificantDigits: 1, maximumSignificantDigits: 3, notation: 'compact', compactDisplay: 'short' })
+const percent = new Intl.NumberFormat(locale, { style: 'percent', maximumFractionDigits: 0 })
+const percent2dp = new Intl.NumberFormat(locale, { style: 'percent', minimumFractionDigits: 2, maximumFractionDigits: 2 })
+const percent5dp = new Intl.NumberFormat(locale, { style: 'percent', minimumFractionDigits: 5, maximumFractionDigits: 5 })
+const decimal = new Intl.NumberFormat(locale, { style: 'decimal', maximumFractionDigits: 2 })
+const decimal1dp = new Intl.NumberFormat(locale, { style: 'decimal', minimumFractionDigits: 1, maximumFractionDigits: 1 })
+const decimal0dp = new Intl.NumberFormat(locale, { style: 'decimal', maximumFractionDigits: 0 })
+const compact = new Intl.NumberFormat(locale, { style: 'decimal', maximumFractionDigits: 2, notation: 'compact', compactDisplay: 'short' })
+const compact2dp = new Intl.NumberFormat(locale, { style: 'decimal', minimumFractionDigits: 2, maximumFractionDigits: 2, notation: 'compact', compactDisplay: 'short' })
+const compactMax2dp = new Intl.NumberFormat(locale, { style: 'decimal', minimumFractionDigits: 0, maximumFractionDigits: 2, notation: 'compact', compactDisplay: 'short' })
+const compact0dp = new Intl.NumberFormat(locale, { style: 'decimal', maximumFractionDigits: 0, notation: 'compact', compactDisplay: 'short' })
+const shortTime = new Intl.DateTimeFormat(locale, { minute: '2-digit', second: '2-digit', fractionalSecondDigits: 3 })
 
 export const cashString = (number) => dollars.format(number)
 export const cashCurrentString = (number) => currentDollars.format(floorPrecision(number, 3))
@@ -41,4 +41,4 @@ export const timeDurationString = (milliseconds) => {
   return `${hoursString}:${minutesString}:${secondsString}`
 }
 export const labelWithCost = (label, cost) => (cost === undefined ? label : `${label} (${cost})`)
-export const maxedUpgrades = "(maxed)"
+export const maxedUpgrades = '(maxed)'

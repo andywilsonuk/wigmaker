@@ -1,14 +1,14 @@
-import MainLoop from "mainloop.js"
-import frameUpdate from "./frameUpdate"
-import { gameTimeCounter } from "../devTools/reporting"
-import { saveOnHidden, saveOnSchedule } from "./autoSave"
-import unstick from "./unstick"
-import { devToolsActive } from "../devTools"
-import * as audio from "../audio"
-import sounds from "../audio/sounds"
-import { hasFlag, sceneTempFlags } from "../shared/sceneTempFlags"
-import { scenes } from "../shared/scenes"
-import * as optionsManager from "../shared/optionsManager"
+import MainLoop from 'mainloop.js'
+import frameUpdate from './frameUpdate'
+import { gameTimeCounter } from '../devTools/reporting'
+import { saveOnHidden, saveOnSchedule } from './autoSave'
+import unstick from './unstick'
+import { devToolsActive } from '../devTools'
+import * as audio from '../audio'
+import sounds from '../audio/sounds'
+import { hasFlag, sceneTempFlags } from '../shared/sceneTempFlags'
+import { scenes } from '../shared/scenes'
+import * as optionsManager from '../shared/optionsManager'
 
 let queuedRender = null
 let hyperAppDispatch
@@ -19,7 +19,7 @@ const subs = [
   saveOnSchedule(),
   !devToolsActive && saveOnHidden(),
   unstick(),
-  gameTimeCounter(),
+  gameTimeCounter()
 ]
 let runningSubs
 
@@ -36,7 +36,7 @@ const pause = () => {
 }
 
 const checkSubscriptions = (state) => {
-  if (state == null) { throw new Error("State has been discarded") }
+  if (state == null) { throw new Error('State has been discarded') }
 
   const running = state.scene === scenes.main && !hasFlag(state.sceneTemp, sceneTempFlags.gamePaused)
   if (gameRunning === running) { return state }

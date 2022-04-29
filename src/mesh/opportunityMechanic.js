@@ -1,9 +1,9 @@
-import dataProvider from "../shared/dataProvider"
-import outcomeHandler from "../shared/outcomeHandler"
-import { visualizationReset, visualizationUpdate } from "./opportunityProgressVisual"
-import criteriaCheck from "../utils/criteriaCheck"
-import { audioIds, enqueueAudio } from "../audio"
-import toggleFlags from "../utils/toggleFlags"
+import dataProvider from '../shared/dataProvider'
+import outcomeHandler from '../shared/outcomeHandler'
+import { visualizationReset, visualizationUpdate } from './opportunityProgressVisual'
+import criteriaCheck from '../utils/criteriaCheck'
+import { audioIds, enqueueAudio } from '../audio'
+import toggleFlags from '../utils/toggleFlags'
 
 export const allowed = ({ opportunity }) => opportunity !== null && opportunity.progress === 0
 
@@ -14,7 +14,7 @@ export const Start = (state, { id }) => {
 
 export const Completed = (state, opportunity) => [{
   ...state,
-  opportunity: null,
+  opportunity: null
 }, outcomeHandler(opportunity), visualizationReset()]
 
 export const OpportunityProgressUpdate = (state, deltaTime) => {
@@ -45,7 +45,7 @@ export const OpportunityProgressUpdate = (state, deltaTime) => {
   return [{
     ...state,
     opportunity: { ...opportunityState, progress, accumulation },
-    compute: compute - computeUsed,
+    compute: compute - computeUsed
   }, visualizationUpdate(), compute - computeUsed === 0 && !toggleFlags.isOn(state.autoInstall) && enqueueAudio(audioIds.computeZero)]
 }
 
@@ -60,6 +60,6 @@ export const OpportunityVisibilityCheck = (state) => {
   if (newlyVisible.length === 0) { return state }
   return {
     ...state,
-    opportunity: { id: newlyVisible[0].id, progress: 0 },
+    opportunity: { id: newlyVisible[0].id, progress: 0 }
   }
 }

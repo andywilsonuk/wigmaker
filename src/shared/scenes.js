@@ -1,6 +1,6 @@
-import { audioIds, enqueueAudio } from "../audio"
-import { effectWithPayload } from "../utils/hyperAppHelpers"
-import { sceneTempFlags } from "./sceneTempFlags"
+import { audioIds, enqueueAudio } from '../audio'
+import { effectWithPayload } from '../utils/hyperAppHelpers'
+import { sceneTempFlags } from './sceneTempFlags'
 
 export const scenes = {
   titles: 0,
@@ -8,7 +8,7 @@ export const scenes = {
   import: 2,
   options: 3,
   theEnd: 4,
-  credits: 5,
+  credits: 5
 }
 export const changeSceneTransform = (scene) => ({ scene, sceneTemp: sceneTempFlags.none })
 

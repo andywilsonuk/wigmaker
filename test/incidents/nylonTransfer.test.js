@@ -1,10 +1,11 @@
-import { NylonTransfer } from "../../src/incidents/nylonTransfer"
-import { logState, noIncidentState, nylonState } from "../testUtils"
+/* eslint-env jest */
+import { NylonTransfer } from '../../src/incidents/nylonTransfer'
+import { logState, noIncidentState, nylonState } from '../testUtils'
 
-test("Nylon gift", () => {
+test('Nylon gift', () => {
   const state = {
     ...nylonState(10),
-    ...logState(),
+    ...logState()
   }
 
   const [actualState] = NylonTransfer(state)
@@ -12,7 +13,7 @@ test("Nylon gift", () => {
   expect(actualState).toStrictEqual({
     ...state,
     ...nylonState(10 + 500000000),
-    ...logState("3r"),
-    ...noIncidentState(),
+    ...logState('3r'),
+    ...noIncidentState()
   })
 })

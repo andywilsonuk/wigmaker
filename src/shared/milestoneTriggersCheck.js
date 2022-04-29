@@ -1,7 +1,7 @@
-import dataProvider from "./dataProvider"
-import { achievedLookup } from "./milestones"
-import outcomeHandler from "./outcomeHandler"
-import { save } from "../state/statePersister"
+import dataProvider from './dataProvider'
+import { achievedLookup } from './milestones'
+import outcomeHandler from './outcomeHandler'
+import { save } from '../state/statePersister'
 
 export default (state) => {
   const occurred = dataProvider.milestoneTriggers
