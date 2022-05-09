@@ -11,6 +11,6 @@ export default () => container({ class: 'dialogOverlay' },
     flexRow(container([text('Audio with thanks from '), link('https://www.zapsplat.com', 'zapsplat.com')])),
     flexRow([
       dialogButton('Back', DialogBack),
-      flexRowLastRight(text('Version 1.6'))
+      flexRowLastRight(text('Version 1.6.1'))
     ])
   ]))

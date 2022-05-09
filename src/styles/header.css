@@ -18,6 +18,7 @@ header {
     grid-area: stats;
     justify-self: end;
     text-transform: initial;
+    white-space: nowrap;
 }
 .menuArea {
     grid-area: menu;
