@@ -20,10 +20,11 @@ export const initMessage = (id, text) => initEntry(id, text, logEntryType.messag
 export const initNews = (id, text) => initEntry(id, text, logEntryType.news)
 export const initMesh = (id, text) => initEntry(id, text, logEntryType.mesh)
 
-export const logTransform = ({ log }, entry) => {
-  if (entry === undefined) { return undefined }
-  const newLog = log.slice(0, logMaxSize)
-  newLog.unshift(entry.id)
+export const logTransform = ({ log }, entries) => {
+  if (entries === undefined) { return undefined }
+  const entriesArr = Array.isArray(entries) ? entries : [entries]
+  const oldLog = log.slice(0, logMaxSize - entriesArr.length)
+  const newLog = entriesArr.map(entry => entry.id).concat(oldLog)
   return { log: newLog }
 }
 

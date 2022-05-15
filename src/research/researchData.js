@@ -171,7 +171,10 @@ export default [{
   milestones: [research.hyperFab, campaign.noHairToHide],
   allowCost: { cash: 182000000, micro: 45000 },
   action: AllowMakeSmartWigs,
-  log: initNews('8j', 'New smart wigs wipe the floor with “outdated” models')
+  log: [
+    initNews('8j', 'New smart wigs wipe the floor with “outdated” models'),
+    initMessage('8B', 'Algae synaptic putty enhancer idle')
+  ]
 }, {
   id: research.drone,
   title: 'Drone-based delivery',
