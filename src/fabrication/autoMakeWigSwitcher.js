@@ -33,14 +33,16 @@ let roundRobinSubtypeIndex = null
 let achievedMemo
 
 const selectSubtype = (state) => {
+  let { wigMakerSubtype } = state
+
   if (achievedMemo !== state.achieved) {
     // reset when achievements change
     achievedMemo = state.achieved
     roundRobinSubtypeIndex = null
     remainingBeforeChange = 0
+    previousSubtype = wigMakerSubtype
   }
 
-  let { wigMakerSubtype } = state
   if (previousSubtype !== null && previousSubtype !== wigMakerSubtype) {
     remainingBeforeChange = manualChangeDuration
   } else {
