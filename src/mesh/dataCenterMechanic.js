@@ -13,7 +13,7 @@ const names = [
   'Chicago',
   'Houston',
   'Boston',
-  'San Diago',
+  'San Diego',
   'Milan',
   'Copenhagen',
   'Karachi',

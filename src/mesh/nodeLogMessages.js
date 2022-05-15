@@ -31,7 +31,7 @@ const logEntries = [
   [sevenBillion, 'Subversion'],
   [sevenBillion, `${newsPrefix}Total hat ban in place`],
   [sevenBillion + fiveHundredMillion, 'The milliner threat draws to a close'],
-  [eightBillion, `${newsPrefix}Scientists confirm every human now a wig wear`],
+  [eightBillion, `${newsPrefix}Scientists confirm every human now a wig wearer`],
   [eightBillion, 'Destiny arrives']
 ]
   .map(([level, text], index) => ({
