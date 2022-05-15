@@ -11,7 +11,7 @@ export const costTransform = (state, quantity) => {
   const siliconRequired = siliconCost * quantity
   const puttyRequired = puttyCost * quantity
   let { silicon, cash } = state
-  if (toggleFlags.isOn(state.autoSilicon)) {
+  if (toggleFlags.isOn(state.autoSilicon) && siliconRequired > silicon) {
     const costOutcome = buySiliconTransform(state, siliconRequired - silicon)
     silicon = costOutcome.silicon
     cash = costOutcome.cash

@@ -21,6 +21,15 @@ describe('Smart chip cost transform', () => {
     expectedSilicon: 3,
     expectedCash: 120,
     expectedAlgae: 18
+  }, {
+    silicon: 1000,
+    cash: 150,
+    algae: 20,
+    autoSilicon: true,
+    quantity: 2,
+    expectedSilicon: 1000 - 4,
+    expectedCash: 150,
+    expectedAlgae: 18
   }].forEach(({ silicon, cash, autoSilicon, quantity, algae, expectedSilicon, expectedCash, expectedAlgae }) => {
     it(`${silicon} silicon, ${cash} cash, ${algae} algae, with ${autoSilicon} auto silicon. ` +
       `Result ${expectedSilicon} silicon, ${expectedCash} cash, ${expectedAlgae} algae`, () => {

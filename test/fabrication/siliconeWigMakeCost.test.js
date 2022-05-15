@@ -21,6 +21,15 @@ describe('Silicone wig cost transform', () => {
     expectedSilicon: 2,
     expectedCash: 90,
     expectedWigCaps: 7
+  }, {
+    silicon: 1000,
+    cash: 150,
+    wigCaps: 10,
+    autoSilicon: true,
+    quantity: 3,
+    expectedSilicon: 1000 - 9,
+    expectedCash: 150,
+    expectedWigCaps: 7
   }]
   testCases.forEach(({ silicon, cash, wigCaps, autoSilicon, quantity, expectedSilicon, expectedCash, expectedWigCaps }) => {
     it(`${silicon} silicon, ${cash} cash, ${wigCaps} wigCaps with ${autoSilicon} auto. Result ${expectedSilicon} silicon, ${expectedCash} cash, ${expectedWigCaps} wigCaps`, () => {
