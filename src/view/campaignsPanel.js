@@ -59,6 +59,7 @@ const campaignItem = (state, { id }, campaign, isRunning, campaignRunningProgres
   )
 
 export default (state) => panel('Campaigns', [
+  toggleFlags.isAvailable(state.autoCampaign) && container({ class: 'marginTop' }, toggle('Campaign Manager', state.autoCampaign, ToggleAutoCampaign)),
   state.campaigns.length === 0
     ? container(plainSpan('None available'))
     : list({ class: 'campaignsList' },
@@ -68,6 +69,5 @@ export default (state) => panel('Campaigns', [
         dataProvider.getById(campaignState.id),
         state.campaignRunning?.id === campaignState.id,
         state.campaignRunning ?? {}
-      ))),
-  toggleFlags.isAvailable(state.autoCampaign) && container({ class: 'marginTop' }, toggle('Campaign Manager', state.autoCampaign, ToggleAutoCampaign))
+      )))
 ])
