@@ -18,9 +18,7 @@ export default (state) => container({ class: 'dialogOverlay' },
         state.sceneTemp === sceneTempFlags.restoreError && plainSpan('Error: Invalid import data, check pasted text'),
         state.sceneTemp === sceneTempFlags.resetSuccess && plainSpan('Reset successful')
       ]),
-      state.sceneTemp === sceneTempFlags.confirmImport
-        ? dialogConfirmButton('Confirm', Import)
-        : dialogButton('Import', [ShowConfirm, sceneTempFlags.confirmImport]),
+      dialogButton('Import', Import),
       state.sceneTemp === sceneTempFlags.confirmReset
         ? dialogConfirmButton('Confirm', Reset)
         : dialogButton('Reset', [ShowConfirm, sceneTempFlags.confirmReset])

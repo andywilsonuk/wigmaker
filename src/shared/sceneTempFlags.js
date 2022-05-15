@@ -9,11 +9,10 @@ export const sceneTempFlags = {
   gamePaused: 2,
 
   // import
-  confirmImport: 4,
-  confirmReset: 8,
-  restoreError: 16,
-  importSuccess: 32,
-  resetSuccess: 64
+  confirmReset: 4,
+  restoreError: 8,
+  importSuccess: 16,
+  resetSuccess: 32
 }
 
 export const setFlag = (flags, newOption) => flags | newOption
