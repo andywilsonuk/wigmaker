@@ -8,7 +8,7 @@ import { achievedLookup, research } from '../shared/milestones'
 const rateButton = (current, rate) => actionButton(percentString(rate), [AlgaeHarvestRate, rate], current !== rate)
 
 export default (state) => achievedLookup.has(state.achieved, research.algaeIncubator) && panel('Algae incubator', [
-  container([
+  flexRow([
     plainSpanWithMarginRight(`Pool size: ${poolUsedString(state)}/${poolSizeString(state)}`),
     actionButton(buyPoolExpansionLabel(state), BuyPoolExpansion, algaePoolExpansionAllowed(state))
   ]),
